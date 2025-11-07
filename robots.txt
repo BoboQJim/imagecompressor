@@ -10,6 +10,3 @@ Disallow: /logs/
 
 # Point to the location of the site map
 Sitemap: https://imagecompressor.pages.dev/sitemap.xml
-
-# Crawler access frequency control (to avoid server pressure)
-Crawl-delay: 1
