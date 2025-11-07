@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- Home Page - highest priority -->
+    <url>
+        <loc>https://imagecompressor.pages.dev/</loc>
+        <lastmod>2025-11-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Function Description Page -->
+    <url>
+        <loc>https://imagecompressor.pages.dev/#how-it-works</loc>
+        <lastmod>2025-11-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Feature page -->
+    <url>
+        <loc>https://imagecompressor.pages.dev/#features</loc>
+        <lastmod>2025-11-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Privacy Policy Page (Google requires access) -->
+    <url>
+        <loc>https://imagecompressor.pages.dev/#privacy</loc>
+        <lastmod>2025-11-07</lastmod>
+        <changefreq>quarterly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Terms of Service Page (Google requires accessibility) -->
+    <url>
+        <loc>https://imagecompressor.pages.dev/#terms</loc>
+        <lastmod>2025-11-07</lastmod>
+        <changefreq>quarterly</changefreq>
+        <priority>0.9</priority>
+    </url>
+</urlset>

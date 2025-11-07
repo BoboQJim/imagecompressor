@@ -1,0 +1,15 @@
+# robots.txt for Image Compressor
+# Follow the Google Search Engine Optimization Guidelines
+User-agent: *
+Allow: /
+
+# Prohibit crawlers from accessing meaningless paths
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /logs/
+
+# Point to the location of the site map
+Sitemap: https://imagecompressor.pages.dev/sitemap.xml
+
+# Crawler access frequency control (to avoid server pressure)
+Crawl-delay: 1
