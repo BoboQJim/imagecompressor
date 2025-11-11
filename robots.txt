@@ -9,4 +9,4 @@ Disallow: /tmp/
 Disallow: /logs/
 
 # Point to the location of the site map
-Sitemap: https://imagecompressor.pages.dev/sitemap.xml
+Sitemap: https://image.squoosh.online/sitemap.xml
