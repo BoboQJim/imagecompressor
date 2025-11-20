@@ -9,6 +9,31 @@
     <meta name="author" content="Image Compressor">
     <meta name="robots" content="index, follow">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><path fill=%22%234F46E5%22 d=%22M116 16H12a8 8 0 0 0-8 8v96a8 8 0 0 0 8 8h104a8 8 0 0 0 8-8V24a8 8 0 0 0-8-8zm-4 88H16V32h96v72zM88 52c0-2.21-1.79-4-4-4H44c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h40c2.21 0 4-1.79 4-4V52zm-4 20H48V56h36v16z/%3E</svg>">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Image Compressor",
+          "url": "https://imagecompressor.example.com",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://imagecompressor.example.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "Image Compressor",
+          "url": "https://imagecompressor.example.com",
+          "logo": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><path fill=%22%234F46E5%22 d=%22M116 16H12a8 8 0 0 0-8 8v96a8 8 0 0 0 8 8h104a8 8 0 0 0 8-8V24a8 8 0 0 0-8-8zm-4 88H16V32h96v72zM88 52c0-2.21-1.79-4-4-4H44c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h40c2.21 0 4-1.79 4-4V52zm-4 20H48V56h36v16z/%3E</svg>"
+        }
+      ]
+    }
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -50,13 +75,19 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="IppWvd+WbRZ2E6MjAYaR4A" async></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5612434384082476"
      crossorigin="anonymous"></script>
 </head>
 <body class="font-inter bg-gray-50 text-dark min-h-screen flex flex-col">
-    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -75,7 +106,6 @@
                 <i class="fa fa-bars text-xl"></i>
             </button>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
                 <a href="#how-it-works" class="py-2 text-gray-600 hover:text-primary transition-colors">How It Works</a>
@@ -86,9 +116,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-grow">
-        <!-- Hero Section -->
         <section class="py-8 md:py-16 bg-gradient-to-b from-white to-neutral">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold mb-4">Compress Images Without Losing Quality</h2>
@@ -97,7 +125,6 @@
                     All processing happens locally on your device.
                 </p>
                 <div class="max-w-3xl mx-auto">
-                    <!-- Dropzone -->
                     <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 transition-all duration-300 bg-white card-shadow">
                         <input type="file" id="file-input" accept="image/*" multiple class="hidden">
                         <div class="flex flex-col items-center">
@@ -111,15 +138,12 @@
             </div>
         </section>
 
-        <!-- Settings & Preview Section -->
         <section id="processing-section" class="py-12 hidden">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col lg:flex-row gap-8">
-                    <!-- Settings Panel -->
                     <div class="lg:w-1/4 bg-white rounded-xl p-6 card-shadow">
                         <h3 class="text-xl font-semibold mb-6">Compression Settings</h3>
                         
-                        <!-- Compression Level -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Compression Level</label>
                             <input type="range" id="compression-level" min="10" max="100" value="70" 
@@ -132,7 +156,6 @@
                             </div>
                         </div>
                         
-                        <!-- Output Format -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Output Format</label>
                             <select id="output-format" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50">
@@ -143,7 +166,6 @@
                             </select>
                         </div>
                         
-                        <!-- Resize Option -->
                         <div class="mb-6">
                             <label class="flex items-center">
                                 <input type="checkbox" id="resize-toggle" class="form-checkbox text-primary rounded focus:ring-primary">
@@ -151,7 +173,6 @@
                             </label>
                         </div>
                         
-                        <!-- Resize Settings (Hidden by default) -->
                         <div id="resize-settings" class="mb-6 hidden pl-6">
                             <div class="grid grid-cols-2 gap-4 mb-4">
                                 <div>
@@ -169,7 +190,6 @@
                             </label>
                         </div>
                         
-                        <!-- File Size Limit -->
                         <div class="mb-6">
                             <label class="flex items-center">
                                 <input type="checkbox" id="size-limit-toggle" class="form-checkbox text-primary rounded focus:outline-none focus:ring-primary">
@@ -177,7 +197,6 @@
                             </label>
                         </div>
                         
-                        <!-- Size Limit Settings (Hidden by default) -->
                         <div id="size-limit-settings" class="mb-6 hidden pl-6">
                             <div class="flex items-center">
                                 <input type="number" id="max-size" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="1000" value="1000">
@@ -188,7 +207,6 @@
                         <button id="compress-button" class="btn-primary w-full">Start Compression</button>
                     </div>
                     
-                    <!-- Preview & Results Panel -->
                     <div class="lg:w-3/4">
                         <div class="bg-white rounded-xl p-6 card-shadow mb-6">
                             <div class="flex justify-between items-center mb-6">
@@ -200,13 +218,10 @@
                                 </div>
                             </div>
                             
-                            <!-- Image Preview Grid -->
                             <div id="preview-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <!-- Preview items will be added here dynamically -->
-                            </div>
+                                </div>
                         </div>
                         
-                        <!-- Compression Results -->
                         <div id="results-section" class="bg-white rounded-xl p-6 card-shadow hidden">
                             <h3 class="text-xl font-semibold mb-4">Compression Complete!</h3>
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
@@ -221,17 +236,14 @@
                                 </button>
                             </div>
                             
-                            <!-- Results List -->
                             <div id="results-list" class="space-y-4 max-h-60 overflow-y-auto pr-2">
-                                <!-- Results will be added here dynamically -->
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How It Works Section -->
         <section id="how-it-works" class="py-16 bg-white">
             <div class="container mx-auto px-4">
                 <h3 class="text-2xl md:text-3xl font-bold text-center mb-12">How It Works</h3>
@@ -270,7 +282,6 @@
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="py-16 bg-neutral">
             <div class="container mx-auto px-4">
                 <h3 class="text-2xl md:text-3xl font-bold text-center mb-12">Powerful Features</h3>
@@ -321,7 +332,6 @@
             </div>
         </section>
 
-        <!-- Privacy Policy Section -->
         <section id="privacy" class="py-16 bg-white">
             <div class="container mx-auto px-4 max-w-3xl">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8">Privacy Policy</h3>
@@ -376,15 +386,14 @@
                     <h4 class="text-xl font-semibold mt-6 mb-3">7. Contact Us</h4>
                     <p class="mb-4">
                         If you have any questions or concerns about our Privacy Policy, please contact us at:
-                        <a href="mailto:privacy@imagecompressor.example.com" class="text-primary hover:underline">
-                            privacy@imagecompressor.example.com
+                        <a href="mailto:support@squoosh.online" class="text-primary hover:underline">
+                            support@squoosh.online
                         </a>
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Terms of Service Section -->
         <section id="terms" class="py-16 bg-neutral">
             <div class="container mx-auto px-4 max-w-3xl">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8">Terms of Service</h3>
@@ -457,8 +466,8 @@
                     <h4 class="text-xl font-semibold mt-6 mb-3">9. Contact Us</h4>
                     <p class="mb-4">
                         If you have any questions or concerns about these Terms of Service, please contact us at:
-                        <a href="mailto:terms@imagecompressor.example.com" class="text-primary hover:underline">
-                            terms@imagecompressor.example.com
+                        <a href="mailto:support@squoosh.online" class="text-primary hover:underline">
+                            support@squoosh.online
                         </a>
                     </p>
                 </div>
@@ -466,7 +475,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-12">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -490,7 +498,6 @@
         </div>
     </footer>
 
-    <!-- Notification Toast -->
     <div id="toast" class="fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center z-50">
         <i id="toast-icon" class="mr-2"></i>
         <span id="toast-message"></span>
@@ -788,9 +795,20 @@
                         // Recursive function to reduce quality until size is under limit
                         function tryCompression(currentQuality) {
                             canvas.toBlob(async (currentBlob) => {
-                                if (currentBlob.size <= maxSizeBytes || attempts >= maxAttempts || currentQuality <= 0.1) {
+                                // FIX 1: Add check for PNG output. If it's PNG, the size limiting loop is useless, so we break it after the first attempt.
+                                const shouldBreak = currentBlob.size <= maxSizeBytes || attempts >= maxAttempts || currentQuality <= 0.1 || format === 'image/png';
+                                
+                                if (shouldBreak) {
                                     blob = currentBlob;
-                                    resolve(createCompressedFile(imageFile, blob, format));
+                                    
+                                    // FIX 2: PNG Safety Check - ensure compressed PNG is not larger than original if no resize occurred
+                                    if (format === 'image/png' && currentBlob.size > imageFile.size && !shouldResize) {
+                                        // If PNG output is larger than original AND no resize was done, use original file.
+                                        resolve(createCompressedFile(imageFile, imageFile, imageFile.type));
+                                    } else {
+                                        resolve(createCompressedFile(imageFile, blob, format));
+                                    }
+
                                 } else {
                                     attempts++;
                                     // Reduce quality by 10% each attempt
@@ -804,7 +822,15 @@
                         // Standard compression without size limit
                         canvas.toBlob((currentBlob) => {
                             blob = currentBlob;
-                            resolve(createCompressedFile(imageFile, blob, format));
+                            
+                            // FIX 2: PNG Safety Check - ensure compressed PNG is not larger than original if no resize occurred
+                            if (format === 'image/png' && currentBlob.size > imageFile.size && !shouldResize) {
+                                // If PNG output is larger than original AND no resize was done, use original file.
+                                resolve(createCompressedFile(imageFile, imageFile, imageFile.type));
+                            } else {
+                                resolve(createCompressedFile(imageFile, blob, format));
+                            }
+                            
                         }, format, effectiveQuality);
                     }
                     
@@ -834,6 +860,7 @@
                 size: blob.size,
                 originalSize: originalFile.size,
                 url: URL.createObjectURL(blob),
+                // Calculate savings based on the actual resulting file size
                 savings: Math.round(100 - (blob.size / originalFile.size) * 100)
             };
         }
@@ -847,7 +874,9 @@
                     <p class="font-medium text-sm">${compressedImage.name}</p>
                     <p class="text-xs text-gray-500">
                         ${formatFileSize(originalImage.size)} → ${formatFileSize(compressedImage.size)}
-                        <span class="text-secondary">(${compressedImage.savings}% smaller)</span>
+                        <span class="${compressedImage.savings >= 0 ? 'text-secondary' : 'text-red-500'}">
+                            (${compressedImage.savings}% smaller)
+                        </span>
                     </p>
                 </div>
                 <button class="text-primary hover:text-primary/80 transition-colors" 
