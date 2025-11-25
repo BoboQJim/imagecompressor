@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Compressor - Free Online Photo Size Reducer</title>
-    <meta name="description" content="Compress images without losing quality. Resize, convert and optimize your photos easily. Supports JPG, PNG, WebP formats.">
+    <meta name="description" content="Compress images without losing quality. Resize, convert and optimize your photos easily. Supports JPG, PNG, WebP, GIF, SVG, ICO formats.">
     <meta name="keywords" content="image compressor, photo compression, resize image, reduce file size, optimize image ,squoosh">
     <meta name="author" content="Image Compressor">
     <meta name="robots" content="index, follow">
@@ -125,13 +125,13 @@
                     All processing happens locally on your device.
                 </p>
                 <div class="max-w-3xl mx-auto">
-                    <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 transition-all duration-300 bg-white card-shadow">
+                    <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 transition-all duration-300 bg-white card-shadow cursor-pointer">
                         <input type="file" id="file-input" accept="image/*" multiple class="hidden">
                         <div class="flex flex-col items-center">
                             <i class="fa fa-cloud-upload text-5xl text-primary mb-4"></i>
-                            <p class="text-lg mb-2">Drag and drop images here, or</p>
-                            <button id="upload-button" class="btn-primary mb-4">Select Images</button>
-                            <p class="text-sm text-gray-500">Supports JPG, PNG, WebP, GIF (max 20 images at once)</p>
+                            <p class="text-lg mb-2">Drag and drop images here, or click to select</p>
+                            <button id="upload-button" class="btn-primary mb-4 pointer-events-none">Select Images</button>
+                            <p class="text-sm text-gray-500">Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)</p>
                         </div>
                     </div>
                 </div>
@@ -163,6 +163,9 @@
                                 <option value="jpg">JPG</option>
                                 <option value="png">PNG</option>
                                 <option value="webp">WebP (Smallest Size)</option>
+                                <option value="gif">GIF</option>
+                                <option value="svg">SVG</option>
+                                <option value="ico">ICO</option>
                             </select>
                         </div>
                         
@@ -255,7 +258,7 @@
                         <h4 class="text-xl font-semibold mb-2">1. Upload Images</h4>
                         <p class="text-gray-600">
                             Drag and drop your images or select files from your device. 
-                            We support JPG, PNG, WebP, and GIF formats.
+                            We support JPG, PNG, WebP, GIF, SVG and ICO formats.
                         </p>
                     </div>
                     <div class="text-center p-6 bg-neutral rounded-xl card-shadow">
@@ -318,7 +321,7 @@
                         <i class="fa fa-image text-2xl text-primary mb-3"></i>
                         <h4 class="text-lg font-semibold mb-2">Multiple Formats</h4>
                         <p class="text-gray-600">
-                            Convert between JPG, PNG, and WebP formats for optimal file size.
+                            Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.
                         </p>
                     </div>
                     <div class="bg-white p-6 rounded-xl card-shadow">
@@ -538,6 +541,7 @@
         });
         
         // Dropzone events
+        dropzone.addEventListener('click', () => fileInput.click()); // Allow click on dropzone
         dropzone.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropzone.classList.add('dropzone-active');
@@ -557,7 +561,8 @@
         });
         
         // Upload button click
-        uploadButton.addEventListener('click', () => {
+        uploadButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent double trigger since dropzone also clicks
             fileInput.click();
         });
         
@@ -579,7 +584,9 @@
         });
         
         // Clear all button
-        clearAllButton.addEventListener('click', () => {
+        clearAllButton.addEventListener('click', resetApp);
+        
+        function resetApp() {
             uploadedImages = [];
             compressedImages = [];
             previewGrid.innerHTML = '';
@@ -594,27 +601,22 @@
                 <p>No images uploaded yet</p>
             `;
             previewGrid.appendChild(emptyState);
-        });
+        }
         
         // Download all button
         downloadAllButton.addEventListener('click', () => {
             if (compressedImages.length === 0) return;
             
-            // If only one image, download directly
             if (compressedImages.length === 1) {
                 downloadImage(compressedImages[0]);
                 return;
             }
             
-            // For multiple images, create a zip (using simple approach without external libraries)
             showToast('Downloading images...', 'fa-download', 'bg-primary');
             
             compressedImages.forEach((image, index) => {
-                // Delay to prevent browser from blocking multiple downloads
                 setTimeout(() => {
                     downloadImage(image);
-                    
-                    // Show completion message after last download
                     if (index === compressedImages.length - 1) {
                         setTimeout(() => {
                             showToast('All images downloaded successfully!', 'fa-check', 'bg-secondary');
@@ -624,14 +626,47 @@
             });
         });
         
-        // Compress button
+        // Helper: Convert PNG Blob to true ICO (with binary header)
+        async function pngToIco(pngBlob, width, height) {
+            const pngData = new Uint8Array(await pngBlob.arrayBuffer());
+            const pngSize = pngData.length;
+            
+            // ICO Header: 6 bytes
+            const header = new Uint8Array([0, 0, 1, 0, 1, 0]);
+            
+            // ICO Directory Entry: 16 bytes
+            const entry = new Uint8Array(16);
+            const view = new DataView(entry.buffer);
+            
+            // Width/Height (0 means 256)
+            const w = (width >= 256) ? 0 : width;
+            const h = (height >= 256) ? 0 : height;
+
+            view.setUint8(0, w); 
+            view.setUint8(1, h);
+            view.setUint8(2, 0); // Palette (0 = true color)
+            view.setUint8(3, 0); // Reserved
+            view.setUint16(4, 1, true); // Planes
+            view.setUint16(6, 32, true); // BitCount
+            view.setUint32(8, pngSize, true); // Size
+            view.setUint32(12, 22, true); // Offset (Header + Entry)
+            
+            // Combine Header + Entry + PNG Data
+            const icoFile = new Uint8Array(header.length + entry.length + pngData.length);
+            icoFile.set(header, 0);
+            icoFile.set(entry, header.length);
+            icoFile.set(pngData, header.length + entry.length);
+            
+            return new Blob([icoFile], { type: 'image/x-icon' });
+        }
+
+        // Compress button logic
         compressButton.addEventListener('click', async () => {
             if (uploadedImages.length === 0) {
                 showToast('No images to compress!', 'fa-exclamation-triangle', 'bg-yellow-500');
                 return;
             }
             
-            // Disable button during processing
             compressButton.disabled = true;
             compressButton.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> Compressing...';
             
@@ -639,36 +674,30 @@
                 compressedImages = [];
                 resultsList.innerHTML = '';
                 
-                // Calculate total original size
-                const totalOriginalSize = uploadedImages.reduce((total, img) => total + img.size, 0);
+                let totalOrig = 0;
+                let totalComp = 0;
                 
-                // Compress each image
                 for (const image of uploadedImages) {
                     const compressedImage = await compressImage(image);
                     compressedImages.push(compressedImage);
-                    
-                    // Add to results list
                     addResultItem(image, compressedImage);
+                    
+                    totalOrig += image.size;
+                    totalComp += compressedImage.size;
                 }
                 
-                // Calculate total compressed size
-                const totalCompressedSize = compressedImages.reduce((total, img) => total + img.size, 0);
-                const savings = 100 - Math.round((totalCompressedSize / totalOriginalSize) * 100);
-                
-                // Update total size display
-                originalTotalSize.textContent = formatFileSize(totalOriginalSize);
-                compressedTotalSize.textContent = formatFileSize(totalCompressedSize);
+                // Update stats
+                originalTotalSize.textContent = formatFileSize(totalOrig);
+                compressedTotalSize.textContent = formatFileSize(totalComp);
+                const savings = 100 - Math.round((totalComp / totalOrig) * 100);
                 savingsPercentage.textContent = `(${savings}% smaller)`;
                 
-                // Show results section
                 resultsSection.classList.remove('hidden');
-                
                 showToast('Compression completed successfully!', 'fa-check', 'bg-secondary');
             } catch (error) {
                 console.error('Compression error:', error);
                 showToast('Error during compression. Please try again.', 'fa-exclamation-circle', 'bg-red-500');
             } finally {
-                // Re-enable button
                 compressButton.disabled = false;
                 compressButton.innerHTML = 'Start Compression';
             }
@@ -676,7 +705,6 @@
         
         // Handle file upload
         function handleFiles(files) {
-            // Limit to 20 files
             const validFiles = Array.from(files)
                 .filter(file => file.type.startsWith('image/'))
                 .slice(0, 20);
@@ -686,66 +714,77 @@
                 return;
             }
             
-            // Show processing section
             processingSection.classList.remove('hidden');
-            
-            // Clear preview grid
             previewGrid.innerHTML = '';
-            
-            // Add files to uploadedImages array
             uploadedImages = validFiles;
             
-            // Create preview items
-            validFiles.forEach((file, index) => {
+            validFiles.forEach((file) => {
                 const reader = new FileReader();
-                
                 reader.onload = (e) => {
                     const previewItem = document.createElement('div');
-                    previewItem.className = 'bg-neutral rounded-lg overflow-hidden';
+                    previewItem.className = 'bg-neutral rounded-lg overflow-hidden border border-gray-200';
                     previewItem.innerHTML = `
-                        <div class="relative pb-[75%]">
+                        <div class="relative pb-[75%] bg-gray-100">
                             <img src="${e.target.result}" alt="Preview" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="p-3">
-                            <p class="text-sm font-medium truncate">${file.name}</p>
+                            <p class="text-sm font-medium truncate" title="${file.name}">${file.name}</p>
                             <p class="text-xs text-gray-500">${formatFileSize(file.size)}</p>
                         </div>
                     `;
                     previewGrid.appendChild(previewItem);
                 };
-                
                 reader.readAsDataURL(file);
             });
             
-            // Show success message
             showToast(`Uploaded ${validFiles.length} image(s)`, 'fa-check', 'bg-secondary');
         }
         
-        // Compress image
+        // Compress image (Core Logic)
         async function compressImage(imageFile) {
             return new Promise((resolve) => {
+                // Get settings
+                const compressionLevel = parseInt(document.getElementById('compression-level').value) / 100;
+                let outputFormat = document.getElementById('output-format').value;
+                const shouldResize = document.getElementById('resize-toggle').checked;
+                const maintainAspectRatio = document.getElementById('maintain-aspect-ratio').checked;
+                const shouldLimitSize = document.getElementById('size-limit-toggle').checked;
+                const maxSizeKB = parseInt(document.getElementById('max-size').value) || 1000;
+                
+                // Determine actual output format from "original"
+                if (outputFormat === 'original') {
+                    if (imageFile.type === 'image/jpeg') outputFormat = 'jpg';
+                    else if (imageFile.type === 'image/png') outputFormat = 'png';
+                    else if (imageFile.type === 'image/webp') outputFormat = 'webp';
+                    else if (imageFile.type === 'image/gif') outputFormat = 'gif';
+                    else if (imageFile.type === 'image/svg+xml') outputFormat = 'svg';
+                    else if (imageFile.type === 'image/x-icon') outputFormat = 'ico';
+                    else outputFormat = 'jpg';
+                }
+
+                // Optimization: If keeping same format, no resize, no size limit, just copy file
+                const isSameFormat = (outputFormat === 'jpg' && imageFile.type === 'image/jpeg') ||
+                                     (outputFormat === 'png' && imageFile.type === 'image/png') ||
+                                     (outputFormat === 'gif' && imageFile.type === 'image/gif') ||
+                                     (outputFormat === 'svg' && imageFile.type === 'image/svg+xml') ||
+                                     (outputFormat === 'webp' && imageFile.type === 'image/webp');
+                                     
+                if (isSameFormat && !shouldResize && !shouldLimitSize) {
+                    return resolve(createCompressedFile(imageFile, imageFile, outputFormat));
+                }
+
                 const img = new Image();
                 img.src = URL.createObjectURL(imageFile);
                 
                 img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    
-                    // Get settings
-                    const compressionLevel = parseInt(document.getElementById('compression-level').value) / 100;
-                    const outputFormat = document.getElementById('output-format').value || imageFile.type.split('/')[1];
-                    const shouldResize = document.getElementById('resize-toggle').checked;
-                    const targetWidth = shouldResize ? parseInt(document.getElementById('resize-width').value) || 0 : 0;
-                    const targetHeight = shouldResize ? parseInt(document.getElementById('resize-height').value) || 0 : 0;
-                    const maintainAspectRatio = document.getElementById('maintain-aspect-ratio').checked;
-                    const shouldLimitSize = document.getElementById('size-limit-toggle').checked;
-                    const maxSizeKB = shouldLimitSize ? parseInt(document.getElementById('max-size').value) || 1000 : Infinity;
-                    
                     // Calculate dimensions
                     let width = img.width;
                     let height = img.height;
                     
                     if (shouldResize) {
+                        const targetWidth = parseInt(document.getElementById('resize-width').value) || 0;
+                        const targetHeight = parseInt(document.getElementById('resize-height').value) || 0;
+                        
                         if (maintainAspectRatio) {
                             if (targetWidth && !targetHeight) {
                                 const ratio = targetWidth / width;
@@ -756,96 +795,91 @@
                                 height = targetHeight;
                                 width = Math.round(width * ratio);
                             } else if (targetWidth && targetHeight) {
-                                // Use the smaller ratio to fit within both dimensions
                                 const ratio = Math.min(targetWidth / width, targetHeight / height);
                                 width = Math.round(width * ratio);
                                 height = Math.round(height * ratio);
                             }
-                        } else if (targetWidth && targetHeight) {
-                            width = targetWidth;
-                            height = targetHeight;
+                        } else if (targetWidth || targetHeight) {
+                            if (targetWidth) width = targetWidth;
+                            if (targetHeight) height = targetHeight;
                         }
                     }
                     
-                    // Set canvas dimensions
+                    const canvas = document.createElement('canvas');
                     canvas.width = width;
                     canvas.height = height;
-                    
-                    // Draw image with anti-aliasing
+                    const ctx = canvas.getContext('2d');
                     ctx.clearRect(0, 0, width, height);
                     ctx.drawImage(img, 0, 0, width, height);
-                    
-                    // Convert to blob with specified format and quality
-                    let quality = compressionLevel;
-                    let blob;
-                    
-                    const format = outputFormat === 'original' 
-                        ? imageFile.type 
-                        : `image/${outputFormat}`;
-                    
-                    // For PNG, quality doesn't matter - use 1.0
-                    const effectiveQuality = format === 'image/png' ? 1.0 : quality;
-                    
-                    // Handle size limiting if needed
-                    if (shouldLimitSize) {
-                        const maxSizeBytes = maxSizeKB * 1024;
-                        let attempts = 0;
-                        const maxAttempts = 10;
-                        
-                        // Recursive function to reduce quality until size is under limit
-                        function tryCompression(currentQuality) {
-                            canvas.toBlob(async (currentBlob) => {
-                                // FIX 1: Add check for PNG output. If it's PNG, the size limiting loop is useless, so we break it after the first attempt.
-                                const shouldBreak = currentBlob.size <= maxSizeBytes || attempts >= maxAttempts || currentQuality <= 0.1 || format === 'image/png';
-                                
-                                if (shouldBreak) {
-                                    blob = currentBlob;
-                                    
-                                    // FIX 2: PNG Safety Check - ensure compressed PNG is not larger than original if no resize occurred
-                                    if (format === 'image/png' && currentBlob.size > imageFile.size && !shouldResize) {
-                                        // If PNG output is larger than original AND no resize was done, use original file.
-                                        resolve(createCompressedFile(imageFile, imageFile, imageFile.type));
-                                    } else {
-                                        resolve(createCompressedFile(imageFile, blob, format));
-                                    }
 
-                                } else {
-                                    attempts++;
-                                    // Reduce quality by 10% each attempt
-                                    tryCompression(Math.max(currentQuality - 0.1, 0.1));
-                                }
-                            }, format, currentQuality);
-                        }
-                        
-                        tryCompression(effectiveQuality);
-                    } else {
-                        // Standard compression without size limit
-                        canvas.toBlob((currentBlob) => {
-                            blob = currentBlob;
-                            
-                            // FIX 2: PNG Safety Check - ensure compressed PNG is not larger than original if no resize occurred
-                            if (format === 'image/png' && currentBlob.size > imageFile.size && !shouldResize) {
-                                // If PNG output is larger than original AND no resize was done, use original file.
-                                resolve(createCompressedFile(imageFile, imageFile, imageFile.type));
-                            } else {
-                                resolve(createCompressedFile(imageFile, blob, format));
-                            }
-                            
-                        }, format, effectiveQuality);
+                    // --- SVG Special Handling ---
+                    if (outputFormat === 'svg') {
+                        const dataUrl = canvas.toDataURL('image/png');
+                        const svgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+    <image width="${width}" height="${height}" xlink:href="${dataUrl}" />
+</svg>`;
+                        const blob = new Blob([svgContent], {type: 'image/svg+xml;charset=utf-8'});
+                        URL.revokeObjectURL(img.src);
+                        resolve(createCompressedFile(imageFile, blob, 'svg'));
+                        return;
                     }
+
+                    // --- Prepare Format for Blob ---
+                    let mimeType = 'image/jpeg';
+                    if (outputFormat === 'png') mimeType = 'image/png';
+                    if (outputFormat === 'webp') mimeType = 'image/webp';
+                    if (outputFormat === 'gif') mimeType = 'image/gif';
+                    if (outputFormat === 'ico') mimeType = 'image/png'; // Start as PNG for ICO
                     
-                    // Revoke object URL to free memory
-                    URL.revokeObjectURL(img.src);
+                    let q = (mimeType === 'image/png' || mimeType === 'image/gif') ? 1.0 : compressionLevel;
+                    
+                    const processBlob = (currentQ) => {
+                         canvas.toBlob(async (blob) => {
+                             // Fallback for unsupported formats
+                             if (!blob && mimeType === 'image/gif') {
+                                 // Some browsers might not support canvas.toBlob('image/gif'), fallback to png
+                                 mimeType = 'image/png';
+                                 processBlob(1.0);
+                                 return;
+                             }
+
+                             // Size Limiting Logic (skip for PNG/ICO/GIF as quality is usually fixed)
+                             if (shouldLimitSize && outputFormat !== 'ico' && mimeType !== 'image/png' && mimeType !== 'image/gif') {
+                                 if (blob.size > maxSizeKB * 1024 && currentQ > 0.1) {
+                                     processBlob(currentQ - 0.1);
+                                     return;
+                                 }
+                             }
+
+                             // Handle ICO conversion
+                             if (outputFormat === 'ico') {
+                                 const icoBlob = await pngToIco(blob, width, height);
+                                 URL.revokeObjectURL(img.src);
+                                 resolve(createCompressedFile(imageFile, icoBlob, 'ico'));
+                                 return;
+                             }
+
+                             URL.revokeObjectURL(img.src);
+                             resolve(createCompressedFile(imageFile, blob, outputFormat));
+                             
+                         }, mimeType, currentQ);
+                    };
+
+                    processBlob(q);
                 };
             });
         }
         
         // Create compressed file object
-        function createCompressedFile(originalFile, blob, format) {
-            // Get file extension
-            const extension = format.split('/')[1];
-            const originalName = originalFile.name.replace(/\.[^/.]+$/, "");
-            const newFileName = `${originalName}.${extension}`;
+        function createCompressedFile(originalFile, blob, extKeyword) {
+            let extension = extKeyword;
+            // Ensure correct extension
+            if (extension === 'svg+xml') extension = 'svg';
+            if (extension === 'x-icon') extension = 'ico';
+            
+            const originalName = originalFile.name.substring(0, originalFile.name.lastIndexOf('.'));
+            const newFileName = `${originalName}_compressed.${extension}`;
             
             // Create new file with original metadata
             const compressedFile = new File([blob], newFileName, {
@@ -871,9 +905,9 @@
             resultItem.className = 'flex justify-between items-center p-3 border-b border-gray-100 last:border-0';
             resultItem.innerHTML = `
                 <div>
-                    <p class="font-medium text-sm">${compressedImage.name}</p>
+                    <p class="font-medium text-sm truncate max-w-[200px]" title="${compressedImage.name}">${compressedImage.name}</p>
                     <p class="text-xs text-gray-500">
-                        ${formatFileSize(originalImage.size)} → ${formatFileSize(compressedImage.size)}
+                        ${formatFileSize(originalImage.size)} → <b>${formatFileSize(compressedImage.size)}</b>
                         <span class="${compressedImage.savings >= 0 ? 'text-secondary' : 'text-red-500'}">
                             (${compressedImage.savings}% smaller)
                         </span>
@@ -922,13 +956,7 @@
         
         // Initialize empty state
         window.addEventListener('load', () => {
-            const emptyState = document.createElement('div');
-            emptyState.className = 'col-span-full text-center py-12 text-gray-500';
-            emptyState.innerHTML = `
-                <i class="fa fa-images text-4xl mb-3"></i>
-                <p>No images uploaded yet</p>
-            `;
-            previewGrid.appendChild(emptyState);
+            resetApp();
         });
         
         // Add global function for download (used in HTML string)
