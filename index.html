@@ -76,6 +76,51 @@
             }
         }
     </style>
+
+    <style>
+        .language-panel {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.35rem;
+            border: 1px solid rgba(79, 70, 229, 0.16);
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(16,185,129,0.08));
+        }
+        .language-select {
+            max-width: 11rem;
+            border: 0;
+            border-radius: 999px;
+            background: white;
+            color: #1F2937;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.45rem 2rem 0.45rem 0.75rem;
+            outline: none;
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
+        }
+        .voice-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-radius: 999px;
+            padding: 0.45rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #4F46E5;
+            background: rgba(255,255,255,0.85);
+            box-shadow: inset 0 0 0 1px rgba(79,70,229,0.18);
+            transition: transform 180ms ease, background 180ms ease;
+        }
+        .voice-action:hover { transform: translateY(-1px); background: white; }
+        html[dir="rtl"] body { direction: rtl; }
+        html[dir="rtl"] .text-left { text-align: right; }
+        html[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]),
+        html[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]),
+        html[dir="rtl"] .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+            --tw-space-x-reverse: 1;
+        }
+    </style>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,6 +153,25 @@
                 <a href="#privacy" class="text-gray-600 hover:text-primary transition-colors">Privacy</a>
                 <a href="#terms" class="text-gray-600 hover:text-primary transition-colors">Terms</a>
             </nav>
+            <div class="hidden md:flex language-panel" aria-label="Language and voice controls">
+                <label for="language-selector" class="sr-only">Language</label>
+                <select id="language-selector" data-language-select class="language-select" aria-label="Language">
+                    <option value="en-US">English (US)</option>
+                    <option value="zh-CN">简体中文</option>
+                    <option value="zh-TW">繁體中文</option>
+                    <option value="es-ES">Español</option>
+                    <option value="fr-FR">Français</option>
+                    <option value="de-DE">Deutsch</option>
+                    <option value="pt-BR">Português BR</option>
+                    <option value="ja-JP">日本語</option>
+                    <option value="ko-KR">한국어</option>
+                    <option value="ar-SA">العربية</option>
+                    <option value="hi-IN">हिन्दी</option>
+                    <option value="ru-RU">Русский</option>
+                </select>
+                <button type="button" data-voice-button class="voice-action" aria-label="Listen"><i class="fa fa-volume-up"></i><span>Listen</span></button>
+                <button type="button" data-voice-stop class="voice-action" aria-label="Stop"><i class="fa fa-stop"></i><span>Stop</span></button>
+            </div>
             <button class="md:hidden text-gray-600" id="mobile-menu-button">
                 <i class="fa fa-bars text-xl"></i>
             </button>
@@ -118,6 +182,25 @@
                 <a href="#features" class="py-2 text-gray-600 hover:text-primary transition-colors">Features</a>
                 <a href="#privacy" class="py-2 text-gray-600 hover:text-primary transition-colors">Privacy Policy</a>
                 <a href="#terms" class="py-2 text-gray-600 hover:text-primary transition-colors">Terms of Service</a>
+                <div class="language-panel w-full justify-between">
+                    <label for="mobile-language-selector" class="sr-only">Language</label>
+                    <select id="mobile-language-selector" data-language-select class="language-select flex-1" aria-label="Language">
+                        <option value="en-US">English (US)</option>
+                        <option value="zh-CN">简体中文</option>
+                        <option value="zh-TW">繁體中文</option>
+                        <option value="es-ES">Español</option>
+                        <option value="fr-FR">Français</option>
+                        <option value="de-DE">Deutsch</option>
+                        <option value="pt-BR">Português BR</option>
+                        <option value="ja-JP">日本語</option>
+                        <option value="ko-KR">한국어</option>
+                        <option value="ar-SA">العربية</option>
+                        <option value="hi-IN">हिन्दी</option>
+                        <option value="ru-RU">Русский</option>
+                    </select>
+                    <button type="button" data-voice-button class="voice-action" aria-label="Listen"><i class="fa fa-volume-up"></i><span>Listen</span></button>
+                    <button type="button" data-voice-stop class="voice-action" aria-label="Stop"><i class="fa fa-stop"></i><span>Stop</span></button>
+                </div>
             </div>
         </div>
     </header>
@@ -241,7 +324,7 @@
                                     </p>
                                 </div>
                                 <button id="download-all" class="btn-primary">
-                                    <i class="fa fa-download mr-1"></i> Download All
+                                    <i class="fa fa-download mr-1"></i>Download All
                                 </button>
                             </div>
                             
@@ -395,8 +478,8 @@
                     <h4 class="text-xl font-semibold mt-6 mb-3">7. Contact Us</h4>
                     <p class="mb-4">
                         If you have any questions or concerns about our Privacy Policy, please contact us at:
-                        <a href="mailto:support@squoosh.online" class="text-primary hover:underline">
-                            support@squoosh.online
+                        <a href="/cdn-cgi/l/email-protection#2655535656495452665557534949554e0849484a4f4843" class="text-primary hover:underline">
+                            <span class="__cf_email__" data-cfemail="1f6c6a6f6f706d6b5f6c6e6a70706c773170717376717a">[email&#160;protected]</span>
                         </a>
                     </p>
                 </div>
@@ -475,8 +558,8 @@
                     <h4 class="text-xl font-semibold mt-6 mb-3">9. Contact Us</h4>
                     <p class="mb-4">
                         If you have any questions or concerns about these Terms of Service, please contact us at:
-                        <a href="mailto:support@squoosh.online" class="text-primary hover:underline">
-                            support@squoosh.online
+                        <a href="/cdn-cgi/l/email-protection#3f4c4a4f4f504d4b7f4c4e4a50504c571150515356515a" class="text-primary hover:underline">
+                            <span class="__cf_email__" data-cfemail="41323431312e3335013230342e2e32296f2e2f2d282f24">[email&#160;protected]</span>
                         </a>
                     </p>
                 </div>
@@ -512,7 +595,7 @@
         <span id="toast-message"></span>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Global variables
         let uploadedImages = [];
         let compressedImages = [];
@@ -540,6 +623,449 @@
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toast-message');
         const toastIcon = document.getElementById('toast-icon');
+
+
+        // Multilingual content, regional voice support, and translated legal text
+        const LOCALES = {
+            'en-US': { label: 'English (US)', htmlLang: 'en', dir: 'ltr', voice: 'en-US',
+                title: 'Image Compressor - Free Online Photo Size Reducer',
+                description: 'Compress images without losing quality. Resize, convert and optimize your photos easily. Supports JPG, PNG, WebP, GIF, SVG, ICO formats.',
+                keywords: 'image compressor, photo compression, resize image, reduce file size, optimize image, squoosh' },
+            'zh-CN': { label: '简体中文', htmlLang: 'zh-CN', dir: 'ltr', voice: 'zh-CN',
+                title: '图像压缩器 - 免费在线照片体积压缩工具',
+                description: '在尽量保持画质的同时压缩图片，轻松调整尺寸、转换格式并优化照片。支持 JPG、PNG、WebP、GIF、SVG、ICO。',
+                keywords: '图片压缩, 照片压缩, 调整图片尺寸, 减小文件体积, 优化图片, squoosh' },
+            'zh-TW': { label: '繁體中文', htmlLang: 'zh-TW', dir: 'ltr', voice: 'zh-TW',
+                title: '圖片壓縮器 - 免費線上照片大小縮減工具',
+                description: '在盡量保留畫質的同時壓縮圖片，輕鬆調整尺寸、轉換格式並最佳化照片。支援 JPG、PNG、WebP、GIF、SVG、ICO。',
+                keywords: '圖片壓縮, 照片壓縮, 調整圖片尺寸, 減少檔案大小, 圖片最佳化, squoosh' },
+            'es-ES': { label: 'Español', htmlLang: 'es', dir: 'ltr', voice: 'es-ES',
+                title: 'Compresor de imágenes - Reductor gratuito de fotos en línea',
+                description: 'Comprime imágenes sin perder calidad. Cambia el tamaño, convierte y optimiza tus fotos fácilmente. Compatible con JPG, PNG, WebP, GIF, SVG e ICO.',
+                keywords: 'compresor de imágenes, compresión de fotos, redimensionar imagen, reducir tamaño de archivo, optimizar imagen, squoosh' },
+            'fr-FR': { label: 'Français', htmlLang: 'fr', dir: 'ltr', voice: 'fr-FR',
+                title: 'Compresseur d’images - Réducteur gratuit de photos en ligne',
+                description: 'Compressez des images sans perdre en qualité. Redimensionnez, convertissez et optimisez facilement vos photos. Formats JPG, PNG, WebP, GIF, SVG et ICO pris en charge.',
+                keywords: 'compresseur image, compression photo, redimensionner image, réduire taille fichier, optimiser image, squoosh' },
+            'de-DE': { label: 'Deutsch', htmlLang: 'de', dir: 'ltr', voice: 'de-DE',
+                title: 'Bildkompressor - Kostenloser Online-Fotogrößenreduzierer',
+                description: 'Komprimiere Bilder ohne Qualitätsverlust. Größe ändern, Formate konvertieren und Fotos einfach optimieren. Unterstützt JPG, PNG, WebP, GIF, SVG und ICO.',
+                keywords: 'Bildkompressor, Fotokomprimierung, Bildgröße ändern, Dateigröße reduzieren, Bild optimieren, squoosh' },
+            'pt-BR': { label: 'Português BR', htmlLang: 'pt-BR', dir: 'ltr', voice: 'pt-BR',
+                title: 'Compressor de imagens - Redutor gratuito de fotos online',
+                description: 'Comprima imagens sem perder qualidade. Redimensione, converta e otimize suas fotos com facilidade. Suporta JPG, PNG, WebP, GIF, SVG e ICO.',
+                keywords: 'compressor de imagem, compressão de foto, redimensionar imagem, reduzir tamanho do arquivo, otimizar imagem, squoosh' },
+            'ja-JP': { label: '日本語', htmlLang: 'ja', dir: 'ltr', voice: 'ja-JP',
+                title: '画像圧縮ツール - 無料オンライン写真サイズ削減',
+                description: '品質を保ちながら画像を圧縮。写真のリサイズ、変換、最適化を簡単に行えます。JPG、PNG、WebP、GIF、SVG、ICO に対応。',
+                keywords: '画像圧縮, 写真圧縮, 画像リサイズ, ファイルサイズ削減, 画像最適化, squoosh' },
+            'ko-KR': { label: '한국어', htmlLang: 'ko', dir: 'ltr', voice: 'ko-KR',
+                title: '이미지 압축기 - 무료 온라인 사진 용량 줄이기',
+                description: '품질 저하를 최소화하며 이미지를 압축하세요. 사진 크기 조정, 형식 변환, 최적화를 쉽게 할 수 있습니다. JPG, PNG, WebP, GIF, SVG, ICO 지원.',
+                keywords: '이미지 압축, 사진 압축, 이미지 크기 조정, 파일 크기 줄이기, 이미지 최적화, squoosh' },
+            'ar-SA': { label: 'العربية', htmlLang: 'ar', dir: 'rtl', voice: 'ar-SA',
+                title: 'ضاغط الصور - أداة مجانية لتقليل حجم الصور عبر الإنترنت',
+                description: 'اضغط الصور مع الحفاظ على الجودة. غيّر الأبعاد، وحوّل الصيغ، وحسّن صورك بسهولة. يدعم JPG وPNG وWebP وGIF وSVG وICO.',
+                keywords: 'ضغط الصور, ضغط الفوتوغراف, تغيير حجم الصورة, تقليل حجم الملف, تحسين الصورة, squoosh' },
+            'hi-IN': { label: 'हिन्दी', htmlLang: 'hi', dir: 'ltr', voice: 'hi-IN',
+                title: 'इमेज कंप्रेसर - मुफ्त ऑनलाइन फोटो आकार घटाने वाला टूल',
+                description: 'गुणवत्ता बनाए रखते हुए छवियाँ संपीड़ित करें। फ़ोटो का आकार बदलें, फ़ॉर्मैट बदलें और उन्हें आसानी से ऑप्टिमाइज़ करें। JPG, PNG, WebP, GIF, SVG, ICO समर्थित।',
+                keywords: 'इमेज कंप्रेसर, फोटो कंप्रेशन, इमेज resize, फ़ाइल आकार कम करें, इमेज optimize, squoosh' },
+            'ru-RU': { label: 'Русский', htmlLang: 'ru', dir: 'ltr', voice: 'ru-RU',
+                title: 'Сжатие изображений - бесплатное уменьшение размера фото онлайн',
+                description: 'Сжимайте изображения без потери качества. Легко меняйте размер, конвертируйте и оптимизируйте фотографии. Поддерживаются JPG, PNG, WebP, GIF, SVG, ICO.',
+                keywords: 'сжатие изображений, сжатие фото, изменить размер изображения, уменьшить размер файла, оптимизация изображения, squoosh' }
+        };
+
+        const UI_TEXT = {
+            'zh-CN': {
+                'Image Compressor': '图像压缩器', 'How It Works': '使用方式', 'Features': '功能', 'Privacy': '隐私', 'Terms': '条款',
+                'Privacy Policy': '隐私政策', 'Terms of Service': '服务条款', 'Language': '语言', 'Listen': '朗读', 'Stop': '停止',
+                'Compress Images Without Losing Quality': '压缩图片，同时尽量保持画质',
+                'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': '轻松减小照片文件体积、调整尺寸并转换格式。所有处理都在你的设备本地完成。',
+                'Drag and drop images here, or click to select': '将图片拖放到此处，或点击选择', 'Select Images': '选择图片',
+                'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': '支持 JPG、PNG、WebP、GIF、SVG、ICO（每次最多 20 张）',
+                'Compression Settings': '压缩设置', 'Compression Level': '压缩级别', 'Low': '低', 'High': '高', 'Output Format': '输出格式',
+                'Keep Original': '保持原格式', 'WebP (Smallest Size)': 'WebP（体积最小）', 'Resize Image': '调整图片尺寸', 'Width (px)': '宽度（px）', 'Height (px)': '高度（px）', 'Auto': '自动', 'Maintain Aspect Ratio': '保持宽高比', 'Set Maximum File Size': '设置最大文件大小', 'Start Compression': '开始压缩',
+                'Image Preview': '图片预览', 'Clear All': '清空全部', 'Compression Complete!': '压缩完成！', 'Download All': '全部下载', 'Download': '下载', 'No images uploaded yet': '尚未上传图片',
+                '1. Upload Images': '1. 上传图片', 'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': '拖放图片或从设备中选择文件。支持 JPG、PNG、WebP、GIF、SVG 和 ICO 格式。', '2. Adjust Settings': '2. 调整设置', 'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': '根据需要选择压缩级别、输出格式、调整尺寸并设置文件大小限制。', '3. Download Results': '3. 下载结果', 'Compress and download your optimized images. All processing happens locally - your images never leave your device.': '压缩并下载优化后的图片。所有处理均在本地完成，图片不会离开你的设备。',
+                'Powerful Features': '强大功能', 'High-Quality Compression': '高质量压缩', 'Reduce file size significantly while maintaining excellent visual quality.': '显著减小文件体积，同时保持优秀的视觉质量。', 'Customizable Settings': '可自定义设置', 'Adjust compression level, resize dimensions, and output formats.': '调整压缩级别、尺寸和输出格式。', 'Batch Processing': '批量处理', 'Compress multiple images at once to save time and effort.': '一次压缩多张图片，节省时间和精力。', 'Privacy-Focused': '注重隐私', 'All processing is done locally on your device. No images are uploaded to servers.': '所有处理都在你的设备本地完成，图片不会上传到服务器。', 'Multiple Formats': '多格式支持', 'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': '在 JPG、PNG、WebP、GIF、SVG 和 ICO 格式之间转换。', 'Responsive Design': '响应式设计', 'Works seamlessly on desktop, tablet, and mobile devices.': '在桌面、平板和移动设备上流畅使用。',
+                'All rights reserved.': '保留所有权利。', 'A free online tool for compressing and optimizing images.': '用于压缩和优化图片的免费在线工具。', 'Downloading images...': '正在下载图片…', 'All images downloaded successfully!': '所有图片已成功下载！', 'No images to compress!': '没有可压缩的图片！', 'Compressing...': '正在压缩…', 'Compression completed successfully!': '压缩已成功完成！', 'Error during compression. Please try again.': '压缩过程中出错，请重试。', 'No valid image files selected': '未选择有效的图片文件', 'Uploaded {count} image(s)': '已上传 {count} 张图片', 'Speech is not supported in this browser.': '此浏览器不支持语音朗读。', '{value}% smaller': '缩小 {value}%'
+            },
+            'zh-TW': {
+                'Image Compressor': '圖片壓縮器', 'How It Works': '使用方式', 'Features': '功能', 'Privacy': '隱私', 'Terms': '條款', 'Privacy Policy': '隱私權政策', 'Terms of Service': '服務條款', 'Language': '語言', 'Listen': '朗讀', 'Stop': '停止',
+                'Compress Images Without Losing Quality': '壓縮圖片，同時盡量保留畫質', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': '輕鬆減少照片檔案大小、調整尺寸並轉換格式。所有處理都在你的裝置本機完成。', 'Drag and drop images here, or click to select': '將圖片拖放到此處，或點擊選擇', 'Select Images': '選擇圖片', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': '支援 JPG、PNG、WebP、GIF、SVG、ICO（每次最多 20 張）',
+                'Compression Settings': '壓縮設定', 'Compression Level': '壓縮等級', 'Low': '低', 'High': '高', 'Output Format': '輸出格式', 'Keep Original': '保留原格式', 'WebP (Smallest Size)': 'WebP（檔案最小）', 'Resize Image': '調整圖片尺寸', 'Width (px)': '寬度（px）', 'Height (px)': '高度（px）', 'Auto': '自動', 'Maintain Aspect Ratio': '保持長寬比', 'Set Maximum File Size': '設定最大檔案大小', 'Start Compression': '開始壓縮', 'Image Preview': '圖片預覽', 'Clear All': '全部清除', 'Compression Complete!': '壓縮完成！', 'Download All': '全部下載', 'Download': '下載', 'No images uploaded yet': '尚未上傳圖片',
+                '1. Upload Images': '1. 上傳圖片', 'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': '拖放圖片或從裝置中選擇檔案。支援 JPG、PNG、WebP、GIF、SVG 和 ICO 格式。', '2. Adjust Settings': '2. 調整設定', 'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': '依需求選擇壓縮等級、輸出格式、調整尺寸並設定檔案大小限制。', '3. Download Results': '3. 下載結果', 'Compress and download your optimized images. All processing happens locally - your images never leave your device.': '壓縮並下載最佳化後的圖片。所有處理均在本機完成，圖片不會離開你的裝置。',
+                'Powerful Features': '強大功能', 'High-Quality Compression': '高品質壓縮', 'Reduce file size significantly while maintaining excellent visual quality.': '大幅減少檔案大小，同時保留優良視覺品質。', 'Customizable Settings': '可自訂設定', 'Adjust compression level, resize dimensions, and output formats.': '調整壓縮等級、尺寸與輸出格式。', 'Batch Processing': '批次處理', 'Compress multiple images at once to save time and effort.': '一次壓縮多張圖片，節省時間與精力。', 'Privacy-Focused': '重視隱私', 'All processing is done locally on your device. No images are uploaded to servers.': '所有處理都在你的裝置本機完成，不會將圖片上傳至伺服器。', 'Multiple Formats': '多格式支援', 'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': '可在 JPG、PNG、WebP、GIF、SVG 與 ICO 格式間轉換。', 'Responsive Design': '響應式設計', 'Works seamlessly on desktop, tablet, and mobile devices.': '可在桌面、平板與手機上順暢使用。',
+                'All rights reserved.': '保留所有權利。', 'A free online tool for compressing and optimizing images.': '用於壓縮與最佳化圖片的免費線上工具。', 'Downloading images...': '正在下載圖片…', 'All images downloaded successfully!': '所有圖片已成功下載！', 'No images to compress!': '沒有可壓縮的圖片！', 'Compressing...': '正在壓縮…', 'Compression completed successfully!': '壓縮已成功完成！', 'Error during compression. Please try again.': '壓縮過程發生錯誤，請重試。', 'No valid image files selected': '未選擇有效的圖片檔案', 'Uploaded {count} image(s)': '已上傳 {count} 張圖片', 'Speech is not supported in this browser.': '此瀏覽器不支援語音朗讀。', '{value}% smaller': '縮小 {value}%'
+            }
+        };
+
+        const UI_ALIASES = {
+            'en-US': {},
+            'es-ES': {
+                'Image Compressor': 'Compresor de imágenes', 'How It Works': 'Cómo funciona', 'Features': 'Funciones', 'Privacy': 'Privacidad', 'Terms': 'Términos', 'Privacy Policy': 'Política de privacidad', 'Terms of Service': 'Términos del servicio', 'Language': 'Idioma', 'Listen': 'Escuchar', 'Stop': 'Detener',
+                'Compress Images Without Losing Quality': 'Comprime imágenes sin perder calidad', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'Reduce fácilmente el tamaño de tus fotos, cambia dimensiones y convierte formatos. Todo se procesa localmente en tu dispositivo.', 'Drag and drop images here, or click to select': 'Arrastra imágenes aquí o haz clic para seleccionar', 'Select Images': 'Seleccionar imágenes', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'Admite JPG, PNG, WebP, GIF, SVG e ICO (máx. 20 imágenes por vez)',
+                'Compression Settings': 'Ajustes de compresión', 'Compression Level': 'Nivel de compresión', 'Low': 'Bajo', 'High': 'Alto', 'Output Format': 'Formato de salida', 'Keep Original': 'Mantener original', 'WebP (Smallest Size)': 'WebP (menor tamaño)', 'Resize Image': 'Redimensionar imagen', 'Width (px)': 'Ancho (px)', 'Height (px)': 'Alto (px)', 'Auto': 'Auto', 'Maintain Aspect Ratio': 'Mantener proporción', 'Set Maximum File Size': 'Definir tamaño máximo', 'Start Compression': 'Iniciar compresión', 'Image Preview': 'Vista previa', 'Clear All': 'Borrar todo', 'Compression Complete!': 'Compresión completada', 'Download All': 'Descargar todo', 'Download': 'Descargar', 'No images uploaded yet': 'Aún no hay imágenes cargadas',
+                '1. Upload Images': '1. Carga imágenes', '2. Adjust Settings': '2. Ajusta opciones', '3. Download Results': '3. Descarga resultados', 'Powerful Features': 'Funciones potentes', 'High-Quality Compression': 'Compresión de alta calidad', 'Reduce file size significantly while maintaining excellent visual quality.': 'Reduce mucho el tamaño manteniendo una gran calidad visual.', 'Customizable Settings': 'Ajustes personalizables', 'Batch Processing': 'Procesamiento por lotes', 'Privacy-Focused': 'Enfocado en la privacidad', 'Multiple Formats': 'Múltiples formatos', 'Responsive Design': 'Diseño adaptable',
+                'All rights reserved.': 'Todos los derechos reservados.', 'A free online tool for compressing and optimizing images.': 'Una herramienta gratuita para comprimir y optimizar imágenes.', 'Downloading images...': 'Descargando imágenes…', 'All images downloaded successfully!': 'Todas las imágenes se descargaron correctamente.', 'No images to compress!': 'No hay imágenes para comprimir.', 'Compressing...': 'Comprimiendo…', 'Compression completed successfully!': 'Compresión completada correctamente.', 'Error during compression. Please try again.': 'Error durante la compresión. Inténtalo de nuevo.', 'No valid image files selected': 'No se seleccionaron imágenes válidas', 'Uploaded {count} image(s)': 'Se cargaron {count} imagen(es)', 'Speech is not supported in this browser.': 'Este navegador no admite lectura por voz.', '{value}% smaller': '{value}% más pequeño'
+            },
+            'fr-FR': {
+                'Image Compressor': 'Compresseur d’images', 'How It Works': 'Fonctionnement', 'Features': 'Fonctionnalités', 'Privacy': 'Confidentialité', 'Terms': 'Conditions', 'Privacy Policy': 'Politique de confidentialité', 'Terms of Service': 'Conditions d’utilisation', 'Language': 'Langue', 'Listen': 'Écouter', 'Stop': 'Arrêter',
+                'Compress Images Without Losing Quality': 'Compressez des images sans perte de qualité', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'Réduisez facilement la taille de vos photos, redimensionnez-les et convertissez les formats. Tout est traité localement sur votre appareil.', 'Drag and drop images here, or click to select': 'Glissez-déposez les images ici, ou cliquez pour choisir', 'Select Images': 'Choisir des images', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'Prend en charge JPG, PNG, WebP, GIF, SVG, ICO (20 images max à la fois)',
+                'Compression Settings': 'Paramètres de compression', 'Compression Level': 'Niveau de compression', 'Low': 'Faible', 'High': 'Élevé', 'Output Format': 'Format de sortie', 'Keep Original': 'Conserver l’original', 'WebP (Smallest Size)': 'WebP (taille minimale)', 'Resize Image': 'Redimensionner l’image', 'Width (px)': 'Largeur (px)', 'Height (px)': 'Hauteur (px)', 'Auto': 'Auto', 'Maintain Aspect Ratio': 'Conserver les proportions', 'Set Maximum File Size': 'Définir une taille maximale', 'Start Compression': 'Lancer la compression', 'Image Preview': 'Aperçu des images', 'Clear All': 'Tout effacer', 'Compression Complete!': 'Compression terminée', 'Download All': 'Tout télécharger', 'Download': 'Télécharger', 'No images uploaded yet': 'Aucune image importée',
+                '1. Upload Images': '1. Importez vos images', '2. Adjust Settings': '2. Ajustez les réglages', '3. Download Results': '3. Téléchargez les résultats', 'Powerful Features': 'Fonctionnalités puissantes', 'High-Quality Compression': 'Compression haute qualité', 'Reduce file size significantly while maintaining excellent visual quality.': 'Réduisez fortement la taille tout en conservant une excellente qualité visuelle.', 'Customizable Settings': 'Réglages personnalisables', 'Batch Processing': 'Traitement par lot', 'Privacy-Focused': 'Axé sur la confidentialité', 'Multiple Formats': 'Formats multiples', 'Responsive Design': 'Design adaptatif',
+                'All rights reserved.': 'Tous droits réservés.', 'A free online tool for compressing and optimizing images.': 'Un outil gratuit pour compresser et optimiser les images.', 'Downloading images...': 'Téléchargement des images…', 'All images downloaded successfully!': 'Toutes les images ont été téléchargées.', 'No images to compress!': 'Aucune image à compresser.', 'Compressing...': 'Compression…', 'Compression completed successfully!': 'Compression terminée avec succès.', 'Error during compression. Please try again.': 'Erreur pendant la compression. Réessayez.', 'No valid image files selected': 'Aucun fichier image valide sélectionné', 'Uploaded {count} image(s)': '{count} image(s) importée(s)', 'Speech is not supported in this browser.': 'La synthèse vocale n’est pas prise en charge par ce navigateur.', '{value}% smaller': '{value}% plus petit'
+            },
+            'de-DE': {
+                'Image Compressor': 'Bildkompressor', 'How It Works': 'So funktioniert es', 'Features': 'Funktionen', 'Privacy': 'Datenschutz', 'Terms': 'Bedingungen', 'Privacy Policy': 'Datenschutzerklärung', 'Terms of Service': 'Nutzungsbedingungen', 'Language': 'Sprache', 'Listen': 'Anhören', 'Stop': 'Stopp',
+                'Compress Images Without Losing Quality': 'Bilder ohne Qualitätsverlust komprimieren', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'Reduziere Dateigrößen, ändere Abmessungen und konvertiere Formate. Alles wird lokal auf deinem Gerät verarbeitet.', 'Drag and drop images here, or click to select': 'Bilder hier ablegen oder zum Auswählen klicken', 'Select Images': 'Bilder auswählen', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'Unterstützt JPG, PNG, WebP, GIF, SVG, ICO (max. 20 Bilder gleichzeitig)',
+                'Compression Settings': 'Komprimierungseinstellungen', 'Compression Level': 'Komprimierungsstufe', 'Low': 'Niedrig', 'High': 'Hoch', 'Output Format': 'Ausgabeformat', 'Keep Original': 'Original behalten', 'WebP (Smallest Size)': 'WebP (kleinste Größe)', 'Resize Image': 'Bildgröße ändern', 'Width (px)': 'Breite (px)', 'Height (px)': 'Höhe (px)', 'Auto': 'Auto', 'Maintain Aspect Ratio': 'Seitenverhältnis beibehalten', 'Set Maximum File Size': 'Maximale Dateigröße festlegen', 'Start Compression': 'Komprimierung starten', 'Image Preview': 'Bildvorschau', 'Clear All': 'Alles löschen', 'Compression Complete!': 'Komprimierung abgeschlossen', 'Download All': 'Alle herunterladen', 'Download': 'Herunterladen', 'No images uploaded yet': 'Noch keine Bilder hochgeladen',
+                '1. Upload Images': '1. Bilder hochladen', '2. Adjust Settings': '2. Einstellungen anpassen', '3. Download Results': '3. Ergebnisse herunterladen', 'Powerful Features': 'Leistungsstarke Funktionen', 'High-Quality Compression': 'Hochwertige Komprimierung', 'Reduce file size significantly while maintaining excellent visual quality.': 'Dateigröße stark reduzieren und dabei sehr gute Bildqualität erhalten.', 'Customizable Settings': 'Anpassbare Einstellungen', 'Batch Processing': 'Stapelverarbeitung', 'Privacy-Focused': 'Datenschutzorientiert', 'Multiple Formats': 'Mehrere Formate', 'Responsive Design': 'Responsives Design',
+                'All rights reserved.': 'Alle Rechte vorbehalten.', 'A free online tool for compressing and optimizing images.': 'Ein kostenloses Online-Tool zum Komprimieren und Optimieren von Bildern.', 'Downloading images...': 'Bilder werden heruntergeladen…', 'All images downloaded successfully!': 'Alle Bilder wurden erfolgreich heruntergeladen.', 'No images to compress!': 'Keine Bilder zum Komprimieren.', 'Compressing...': 'Komprimieren…', 'Compression completed successfully!': 'Komprimierung erfolgreich abgeschlossen.', 'Error during compression. Please try again.': 'Fehler bei der Komprimierung. Bitte erneut versuchen.', 'No valid image files selected': 'Keine gültigen Bilddateien ausgewählt', 'Uploaded {count} image(s)': '{count} Bild(er) hochgeladen', 'Speech is not supported in this browser.': 'Sprachausgabe wird von diesem Browser nicht unterstützt.', '{value}% smaller': '{value}% kleiner'
+            },
+            'pt-BR': {
+                'Image Compressor': 'Compressor de imagens', 'How It Works': 'Como funciona', 'Features': 'Recursos', 'Privacy': 'Privacidade', 'Terms': 'Termos', 'Privacy Policy': 'Política de privacidade', 'Terms of Service': 'Termos de serviço', 'Language': 'Idioma', 'Listen': 'Ouvir', 'Stop': 'Parar',
+                'Compress Images Without Losing Quality': 'Comprima imagens sem perder qualidade', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'Reduza facilmente o tamanho das fotos, altere dimensões e converta formatos. Todo o processamento acontece localmente no seu dispositivo.', 'Drag and drop images here, or click to select': 'Arraste imagens aqui ou clique para selecionar', 'Select Images': 'Selecionar imagens', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'Suporta JPG, PNG, WebP, GIF, SVG e ICO (máx. 20 imagens por vez)',
+                'Compression Settings': 'Configurações de compressão', 'Compression Level': 'Nível de compressão', 'Low': 'Baixo', 'High': 'Alto', 'Output Format': 'Formato de saída', 'Keep Original': 'Manter original', 'WebP (Smallest Size)': 'WebP (menor tamanho)', 'Resize Image': 'Redimensionar imagem', 'Width (px)': 'Largura (px)', 'Height (px)': 'Altura (px)', 'Auto': 'Auto', 'Maintain Aspect Ratio': 'Manter proporção', 'Set Maximum File Size': 'Definir tamanho máximo', 'Start Compression': 'Iniciar compressão', 'Image Preview': 'Prévia da imagem', 'Clear All': 'Limpar tudo', 'Compression Complete!': 'Compressão concluída', 'Download All': 'Baixar tudo', 'Download': 'Baixar', 'No images uploaded yet': 'Nenhuma imagem enviada ainda',
+                '1. Upload Images': '1. Envie imagens', '2. Adjust Settings': '2. Ajuste configurações', '3. Download Results': '3. Baixe resultados', 'Powerful Features': 'Recursos poderosos', 'High-Quality Compression': 'Compressão de alta qualidade', 'Reduce file size significantly while maintaining excellent visual quality.': 'Reduza bastante o tamanho mantendo excelente qualidade visual.', 'Customizable Settings': 'Configurações personalizáveis', 'Batch Processing': 'Processamento em lote', 'Privacy-Focused': 'Foco em privacidade', 'Multiple Formats': 'Vários formatos', 'Responsive Design': 'Design responsivo',
+                'All rights reserved.': 'Todos os direitos reservados.', 'A free online tool for compressing and optimizing images.': 'Uma ferramenta online gratuita para comprimir e otimizar imagens.', 'Downloading images...': 'Baixando imagens…', 'All images downloaded successfully!': 'Todas as imagens foram baixadas com sucesso.', 'No images to compress!': 'Não há imagens para comprimir.', 'Compressing...': 'Comprimindo…', 'Compression completed successfully!': 'Compressão concluída com sucesso.', 'Error during compression. Please try again.': 'Erro durante a compressão. Tente novamente.', 'No valid image files selected': 'Nenhum arquivo de imagem válido selecionado', 'Uploaded {count} image(s)': '{count} imagem(ns) enviada(s)', 'Speech is not supported in this browser.': 'Este navegador não oferece suporte à leitura por voz.', '{value}% smaller': '{value}% menor'
+            },
+            'ja-JP': {
+                'Image Compressor': '画像圧縮ツール', 'How It Works': '使い方', 'Features': '機能', 'Privacy': 'プライバシー', 'Terms': '利用規約', 'Privacy Policy': 'プライバシーポリシー', 'Terms of Service': '利用規約', 'Language': '言語', 'Listen': '読み上げ', 'Stop': '停止',
+                'Compress Images Without Losing Quality': '品質を保ちながら画像を圧縮', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': '写真のファイルサイズ削減、サイズ変更、形式変換を簡単に行えます。処理はすべて端末内で行われます。', 'Drag and drop images here, or click to select': 'ここに画像をドラッグ＆ドロップ、またはクリックして選択', 'Select Images': '画像を選択', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'JPG、PNG、WebP、GIF、SVG、ICO に対応（一度に最大20枚）',
+                'Compression Settings': '圧縮設定', 'Compression Level': '圧縮レベル', 'Low': '低', 'High': '高', 'Output Format': '出力形式', 'Keep Original': '元の形式を維持', 'WebP (Smallest Size)': 'WebP（最小サイズ）', 'Resize Image': '画像サイズを変更', 'Width (px)': '幅（px）', 'Height (px)': '高さ（px）', 'Auto': '自動', 'Maintain Aspect Ratio': '縦横比を維持', 'Set Maximum File Size': '最大ファイルサイズを設定', 'Start Compression': '圧縮を開始', 'Image Preview': '画像プレビュー', 'Clear All': 'すべてクリア', 'Compression Complete!': '圧縮完了', 'Download All': 'すべてダウンロード', 'Download': 'ダウンロード', 'No images uploaded yet': 'まだ画像がアップロードされていません',
+                '1. Upload Images': '1. 画像をアップロード', '2. Adjust Settings': '2. 設定を調整', '3. Download Results': '3. 結果をダウンロード', 'Powerful Features': '便利な機能', 'High-Quality Compression': '高品質圧縮', 'Reduce file size significantly while maintaining excellent visual quality.': '優れた見た目を保ちながらファイルサイズを大幅に削減します。', 'Customizable Settings': 'カスタム設定', 'Batch Processing': '一括処理', 'Privacy-Focused': 'プライバシー重視', 'Multiple Formats': '複数形式対応', 'Responsive Design': 'レスポンシブデザイン',
+                'All rights reserved.': '全著作権所有。', 'A free online tool for compressing and optimizing images.': '画像の圧縮と最適化のための無料オンラインツールです。', 'Downloading images...': '画像をダウンロード中…', 'All images downloaded successfully!': 'すべての画像をダウンロードしました。', 'No images to compress!': '圧縮する画像がありません。', 'Compressing...': '圧縮中…', 'Compression completed successfully!': '圧縮が完了しました。', 'Error during compression. Please try again.': '圧縮中にエラーが発生しました。もう一度お試しください。', 'No valid image files selected': '有効な画像ファイルが選択されていません', 'Uploaded {count} image(s)': '{count} 枚の画像をアップロードしました', 'Speech is not supported in this browser.': 'このブラウザは音声読み上げに対応していません。', '{value}% smaller': '{value}% 削減'
+            },
+            'ko-KR': {
+                'Image Compressor': '이미지 압축기', 'How It Works': '사용 방법', 'Features': '기능', 'Privacy': '개인정보', 'Terms': '약관', 'Privacy Policy': '개인정보 처리방침', 'Terms of Service': '서비스 약관', 'Language': '언어', 'Listen': '듣기', 'Stop': '중지',
+                'Compress Images Without Losing Quality': '품질을 유지하며 이미지 압축', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': '사진 파일 크기를 줄이고, 크기를 조정하며, 형식을 변환하세요. 모든 처리는 기기에서 로컬로 진행됩니다.', 'Drag and drop images here, or click to select': '이미지를 여기에 끌어오거나 클릭하여 선택', 'Select Images': '이미지 선택', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'JPG, PNG, WebP, GIF, SVG, ICO 지원(한 번에 최대 20장)',
+                'Compression Settings': '압축 설정', 'Compression Level': '압축 수준', 'Low': '낮음', 'High': '높음', 'Output Format': '출력 형식', 'Keep Original': '원본 유지', 'WebP (Smallest Size)': 'WebP(가장 작은 크기)', 'Resize Image': '이미지 크기 조정', 'Width (px)': '너비(px)', 'Height (px)': '높이(px)', 'Auto': '자동', 'Maintain Aspect Ratio': '비율 유지', 'Set Maximum File Size': '최대 파일 크기 설정', 'Start Compression': '압축 시작', 'Image Preview': '이미지 미리보기', 'Clear All': '모두 지우기', 'Compression Complete!': '압축 완료', 'Download All': '모두 다운로드', 'Download': '다운로드', 'No images uploaded yet': '아직 업로드된 이미지가 없습니다',
+                '1. Upload Images': '1. 이미지 업로드', '2. Adjust Settings': '2. 설정 조정', '3. Download Results': '3. 결과 다운로드', 'Powerful Features': '강력한 기능', 'High-Quality Compression': '고품질 압축', 'Reduce file size significantly while maintaining excellent visual quality.': '우수한 시각 품질을 유지하면서 파일 크기를 크게 줄입니다.', 'Customizable Settings': '사용자 지정 설정', 'Batch Processing': '일괄 처리', 'Privacy-Focused': '개인정보 보호 중심', 'Multiple Formats': '다양한 형식', 'Responsive Design': '반응형 디자인',
+                'All rights reserved.': '모든 권리 보유.', 'A free online tool for compressing and optimizing images.': '이미지를 압축하고 최적화하는 무료 온라인 도구입니다.', 'Downloading images...': '이미지 다운로드 중…', 'All images downloaded successfully!': '모든 이미지가 성공적으로 다운로드되었습니다.', 'No images to compress!': '압축할 이미지가 없습니다.', 'Compressing...': '압축 중…', 'Compression completed successfully!': '압축이 완료되었습니다.', 'Error during compression. Please try again.': '압축 중 오류가 발생했습니다. 다시 시도하세요.', 'No valid image files selected': '유효한 이미지 파일이 선택되지 않았습니다', 'Uploaded {count} image(s)': '이미지 {count}개 업로드됨', 'Speech is not supported in this browser.': '이 브라우저는 음성 읽기를 지원하지 않습니다.', '{value}% smaller': '{value}% 감소'
+            },
+            'ar-SA': {
+                'Image Compressor': 'ضاغط الصور', 'How It Works': 'طريقة العمل', 'Features': 'الميزات', 'Privacy': 'الخصوصية', 'Terms': 'الشروط', 'Privacy Policy': 'سياسة الخصوصية', 'Terms of Service': 'شروط الخدمة', 'Language': 'اللغة', 'Listen': 'استماع', 'Stop': 'إيقاف',
+                'Compress Images Without Losing Quality': 'اضغط الصور مع الحفاظ على الجودة', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'قلّل حجم صورك بسهولة، وغيّر الأبعاد، وحوّل الصيغ. تتم كل المعالجة محليًا على جهازك.', 'Drag and drop images here, or click to select': 'اسحب الصور هنا أو انقر للاختيار', 'Select Images': 'اختيار الصور', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'يدعم JPG وPNG وWebP وGIF وSVG وICO (حتى 20 صورة في المرة)',
+                'Compression Settings': 'إعدادات الضغط', 'Compression Level': 'مستوى الضغط', 'Low': 'منخفض', 'High': 'مرتفع', 'Output Format': 'صيغة الإخراج', 'Keep Original': 'الإبقاء على الأصل', 'WebP (Smallest Size)': 'WebP (أصغر حجم)', 'Resize Image': 'تغيير حجم الصورة', 'Width (px)': 'العرض (px)', 'Height (px)': 'الارتفاع (px)', 'Auto': 'تلقائي', 'Maintain Aspect Ratio': 'الحفاظ على النسبة', 'Set Maximum File Size': 'تحديد أقصى حجم للملف', 'Start Compression': 'بدء الضغط', 'Image Preview': 'معاينة الصور', 'Clear All': 'مسح الكل', 'Compression Complete!': 'اكتمل الضغط', 'Download All': 'تنزيل الكل', 'Download': 'تنزيل', 'No images uploaded yet': 'لم يتم رفع صور بعد',
+                '1. Upload Images': '1. ارفع الصور', '2. Adjust Settings': '2. اضبط الإعدادات', '3. Download Results': '3. نزّل النتائج', 'Powerful Features': 'ميزات قوية', 'High-Quality Compression': 'ضغط عالي الجودة', 'Reduce file size significantly while maintaining excellent visual quality.': 'تقليل كبير في حجم الملف مع الحفاظ على جودة مرئية ممتازة.', 'Customizable Settings': 'إعدادات قابلة للتخصيص', 'Batch Processing': 'معالجة دفعية', 'Privacy-Focused': 'يركز على الخصوصية', 'Multiple Formats': 'صيغ متعددة', 'Responsive Design': 'تصميم متجاوب',
+                'All rights reserved.': 'جميع الحقوق محفوظة.', 'A free online tool for compressing and optimizing images.': 'أداة مجانية عبر الإنترنت لضغط الصور وتحسينها.', 'Downloading images...': 'جارٍ تنزيل الصور…', 'All images downloaded successfully!': 'تم تنزيل جميع الصور بنجاح.', 'No images to compress!': 'لا توجد صور لضغطها.', 'Compressing...': 'جارٍ الضغط…', 'Compression completed successfully!': 'اكتمل الضغط بنجاح.', 'Error during compression. Please try again.': 'حدث خطأ أثناء الضغط. حاول مرة أخرى.', 'No valid image files selected': 'لم يتم تحديد ملفات صور صالحة', 'Uploaded {count} image(s)': 'تم رفع {count} صورة', 'Speech is not supported in this browser.': 'هذا المتصفح لا يدعم القراءة الصوتية.', '{value}% smaller': 'أصغر بنسبة {value}%'
+            },
+            'hi-IN': {
+                'Image Compressor': 'इमेज कंप्रेसर', 'How It Works': 'यह कैसे काम करता है', 'Features': 'विशेषताएँ', 'Privacy': 'गोपनीयता', 'Terms': 'शर्तें', 'Privacy Policy': 'गोपनीयता नीति', 'Terms of Service': 'सेवा की शर्तें', 'Language': 'भाषा', 'Listen': 'सुनें', 'Stop': 'रोकें',
+                'Compress Images Without Losing Quality': 'गुणवत्ता बनाए रखते हुए छवियाँ संपीड़ित करें', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'फ़ोटो का फ़ाइल आकार घटाएँ, आयाम बदलें और फ़ॉर्मैट परिवर्तित करें। सारी प्रोसेसिंग आपके डिवाइस पर स्थानीय रूप से होती है।', 'Drag and drop images here, or click to select': 'छवियाँ यहाँ खींचें या चुनने के लिए क्लिक करें', 'Select Images': 'छवियाँ चुनें', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'JPG, PNG, WebP, GIF, SVG, ICO समर्थित (एक बार में अधिकतम 20 छवियाँ)',
+                'Compression Settings': 'कंप्रेशन सेटिंग्स', 'Compression Level': 'कंप्रेशन स्तर', 'Low': 'कम', 'High': 'उच्च', 'Output Format': 'आउटपुट फ़ॉर्मैट', 'Keep Original': 'मूल रखें', 'WebP (Smallest Size)': 'WebP (सबसे छोटा आकार)', 'Resize Image': 'छवि का आकार बदलें', 'Width (px)': 'चौड़ाई (px)', 'Height (px)': 'ऊँचाई (px)', 'Auto': 'स्वचालित', 'Maintain Aspect Ratio': 'अनुपात बनाए रखें', 'Set Maximum File Size': 'अधिकतम फ़ाइल आकार सेट करें', 'Start Compression': 'कंप्रेशन शुरू करें', 'Image Preview': 'छवि पूर्वावलोकन', 'Clear All': 'सब साफ़ करें', 'Compression Complete!': 'कंप्रेशन पूरा', 'Download All': 'सब डाउनलोड करें', 'Download': 'डाउनलोड', 'No images uploaded yet': 'अभी कोई छवि अपलोड नहीं हुई',
+                '1. Upload Images': '1. छवियाँ अपलोड करें', '2. Adjust Settings': '2. सेटिंग्स बदलें', '3. Download Results': '3. परिणाम डाउनलोड करें', 'Powerful Features': 'शक्तिशाली विशेषताएँ', 'High-Quality Compression': 'उच्च गुणवत्ता कंप्रेशन', 'Reduce file size significantly while maintaining excellent visual quality.': 'बेहतरीन दृश्य गुणवत्ता रखते हुए फ़ाइल आकार काफी घटाएँ।', 'Customizable Settings': 'अनुकूल सेटिंग्स', 'Batch Processing': 'बैच प्रोसेसिंग', 'Privacy-Focused': 'गोपनीयता केंद्रित', 'Multiple Formats': 'कई फ़ॉर्मैट', 'Responsive Design': 'रेस्पॉन्सिव डिज़ाइन',
+                'All rights reserved.': 'सर्वाधिकार सुरक्षित।', 'A free online tool for compressing and optimizing images.': 'छवियों को संपीड़ित और ऑप्टिमाइज़ करने का मुफ्त ऑनलाइन टूल।', 'Downloading images...': 'छवियाँ डाउनलोड हो रही हैं…', 'All images downloaded successfully!': 'सभी छवियाँ सफलतापूर्वक डाउनलोड हुईं।', 'No images to compress!': 'कंप्रेस करने के लिए कोई छवि नहीं।', 'Compressing...': 'कंप्रेस हो रहा है…', 'Compression completed successfully!': 'कंप्रेशन सफलतापूर्वक पूरा हुआ।', 'Error during compression. Please try again.': 'कंप्रेशन के दौरान त्रुटि हुई। फिर प्रयास करें।', 'No valid image files selected': 'कोई मान्य छवि फ़ाइल चयनित नहीं', 'Uploaded {count} image(s)': '{count} छवि(याँ) अपलोड हुईं', 'Speech is not supported in this browser.': 'यह ब्राउज़र वॉइस रीडिंग समर्थित नहीं करता।', '{value}% smaller': '{value}% छोटा'
+            },
+            'ru-RU': {
+                'Image Compressor': 'Сжатие изображений', 'How It Works': 'Как это работает', 'Features': 'Возможности', 'Privacy': 'Конфиденциальность', 'Terms': 'Условия', 'Privacy Policy': 'Политика конфиденциальности', 'Terms of Service': 'Условия обслуживания', 'Language': 'Язык', 'Listen': 'Прослушать', 'Stop': 'Стоп',
+                'Compress Images Without Losing Quality': 'Сжимайте изображения без потери качества', 'Easily reduce file size of your photos, resize dimensions, and convert formats. All processing happens locally on your device.': 'Легко уменьшайте размер фото, меняйте размеры и конвертируйте форматы. Вся обработка выполняется локально на вашем устройстве.', 'Drag and drop images here, or click to select': 'Перетащите изображения сюда или нажмите для выбора', 'Select Images': 'Выбрать изображения', 'Supports JPG, PNG, WebP, GIF, SVG, ICO (max 20 images at once)': 'Поддерживает JPG, PNG, WebP, GIF, SVG, ICO (до 20 изображений за раз)',
+                'Compression Settings': 'Настройки сжатия', 'Compression Level': 'Уровень сжатия', 'Low': 'Низкий', 'High': 'Высокий', 'Output Format': 'Формат вывода', 'Keep Original': 'Оставить исходный', 'WebP (Smallest Size)': 'WebP (минимальный размер)', 'Resize Image': 'Изменить размер', 'Width (px)': 'Ширина (px)', 'Height (px)': 'Высота (px)', 'Auto': 'Авто', 'Maintain Aspect Ratio': 'Сохранять пропорции', 'Set Maximum File Size': 'Задать максимальный размер', 'Start Compression': 'Начать сжатие', 'Image Preview': 'Предпросмотр', 'Clear All': 'Очистить всё', 'Compression Complete!': 'Сжатие завершено', 'Download All': 'Скачать всё', 'Download': 'Скачать', 'No images uploaded yet': 'Изображения ещё не загружены',
+                '1. Upload Images': '1. Загрузите изображения', '2. Adjust Settings': '2. Настройте параметры', '3. Download Results': '3. Скачайте результат', 'Powerful Features': 'Мощные возможности', 'High-Quality Compression': 'Качественное сжатие', 'Reduce file size significantly while maintaining excellent visual quality.': 'Значительно уменьшайте размер файла, сохраняя отличное визуальное качество.', 'Customizable Settings': 'Гибкие настройки', 'Batch Processing': 'Пакетная обработка', 'Privacy-Focused': 'Конфиденциальность', 'Multiple Formats': 'Несколько форматов', 'Responsive Design': 'Адаптивный дизайн',
+                'All rights reserved.': 'Все права защищены.', 'A free online tool for compressing and optimizing images.': 'Бесплатный онлайн-инструмент для сжатия и оптимизации изображений.', 'Downloading images...': 'Загрузка изображений…', 'All images downloaded successfully!': 'Все изображения успешно загружены.', 'No images to compress!': 'Нет изображений для сжатия.', 'Compressing...': 'Сжатие…', 'Compression completed successfully!': 'Сжатие успешно завершено.', 'Error during compression. Please try again.': 'Ошибка при сжатии. Повторите попытку.', 'No valid image files selected': 'Не выбраны допустимые изображения', 'Uploaded {count} image(s)': 'Загружено изображений: {count}', 'Speech is not supported in this browser.': 'Этот браузер не поддерживает озвучивание.', '{value}% smaller': 'на {value}% меньше'
+            }
+        };
+        Object.assign(UI_TEXT, UI_ALIASES);
+
+        const UI_SUPPLEMENTS = {
+            'es-ES': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Arrastra tus imágenes o selecciona archivos desde tu dispositivo. Admitimos JPG, PNG, WebP, GIF, SVG e ICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'Elige el nivel de compresión, formato de salida, dimensiones y límites de tamaño según tus necesidades.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'Comprime y descarga tus imágenes optimizadas. Todo ocurre localmente: tus imágenes nunca salen del dispositivo.',
+                'Adjust compression level, resize dimensions, and output formats.': 'Ajusta el nivel de compresión, las dimensiones y los formatos de salida.',
+                'Compress multiple images at once to save time and effort.': 'Comprime varias imágenes a la vez para ahorrar tiempo y esfuerzo.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'Todo se procesa localmente en tu dispositivo. No se suben imágenes a servidores.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Convierte entre formatos JPG, PNG, WebP, GIF, SVG e ICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'Funciona sin problemas en computadoras, tabletas y móviles.'
+            },
+            'fr-FR': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Glissez vos images ou sélectionnez des fichiers depuis votre appareil. Nous prenons en charge JPG, PNG, WebP, GIF, SVG et ICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'Choisissez le niveau de compression, le format de sortie, les dimensions et les limites de taille selon vos besoins.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'Compressez et téléchargez vos images optimisées. Tout se passe localement : vos images ne quittent jamais votre appareil.',
+                'Adjust compression level, resize dimensions, and output formats.': 'Ajustez le niveau de compression, les dimensions et les formats de sortie.',
+                'Compress multiple images at once to save time and effort.': 'Compressez plusieurs images à la fois pour gagner du temps.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'Tout est traité localement sur votre appareil. Aucune image n’est envoyée à des serveurs.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Convertissez entre les formats JPG, PNG, WebP, GIF, SVG et ICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'Fonctionne parfaitement sur ordinateur, tablette et mobile.'
+            },
+            'de-DE': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Lege Bilder per Drag-and-drop ab oder wähle Dateien von deinem Gerät. Wir unterstützen JPG, PNG, WebP, GIF, SVG und ICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'Wähle Komprimierungsstufe, Ausgabeformat, Abmessungen und Dateigrößenlimits nach Bedarf.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'Komprimiere und lade optimierte Bilder herunter. Alles läuft lokal: deine Bilder verlassen dein Gerät nicht.',
+                'Adjust compression level, resize dimensions, and output formats.': 'Passe Komprimierungsstufe, Abmessungen und Ausgabeformate an.',
+                'Compress multiple images at once to save time and effort.': 'Komprimiere mehrere Bilder gleichzeitig und spare Aufwand.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'Alles wird lokal auf deinem Gerät verarbeitet. Keine Bilder werden auf Server hochgeladen.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Konvertiere zwischen JPG, PNG, WebP, GIF, SVG und ICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'Funktioniert nahtlos auf Desktop, Tablet und Mobilgerät.'
+            },
+            'pt-BR': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Arraste suas imagens ou selecione arquivos do dispositivo. Suportamos JPG, PNG, WebP, GIF, SVG e ICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'Escolha nível de compressão, formato de saída, dimensões e limites de tamanho conforme sua necessidade.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'Comprima e baixe suas imagens otimizadas. Tudo acontece localmente: suas imagens não saem do dispositivo.',
+                'Adjust compression level, resize dimensions, and output formats.': 'Ajuste o nível de compressão, dimensões e formatos de saída.',
+                'Compress multiple images at once to save time and effort.': 'Comprima várias imagens de uma vez para economizar tempo e esforço.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'Todo o processamento é local no seu dispositivo. Nenhuma imagem é enviada a servidores.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Converta entre JPG, PNG, WebP, GIF, SVG e ICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'Funciona perfeitamente em desktop, tablet e celular.'
+            },
+            'ja-JP': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': '画像をドラッグ＆ドロップするか、端末からファイルを選択します。JPG、PNG、WebP、GIF、SVG、ICO に対応しています。',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': '必要に応じて圧縮レベル、出力形式、サイズ変更、ファイルサイズ上限を選択できます。',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': '最適化された画像を圧縮してダウンロードします。処理はローカルで完結し、画像は端末外へ送信されません。',
+                'Adjust compression level, resize dimensions, and output formats.': '圧縮レベル、サイズ、出力形式を調整できます。',
+                'Compress multiple images at once to save time and effort.': '複数の画像をまとめて圧縮し、手間を省けます。',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'すべて端末上で処理され、画像はサーバーへアップロードされません。',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'JPG、PNG、WebP、GIF、SVG、ICO 間で変換できます。',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'デスクトップ、タブレット、モバイルで快適に動作します。'
+            },
+            'ko-KR': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': '이미지를 끌어오거나 기기에서 파일을 선택하세요. JPG, PNG, WebP, GIF, SVG, ICO를 지원합니다.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': '필요에 맞게 압축 수준, 출력 형식, 크기 조정 및 파일 크기 제한을 선택하세요.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': '최적화된 이미지를 압축하고 다운로드하세요. 모든 처리는 로컬에서 이루어지며 이미지는 기기를 떠나지 않습니다.',
+                'Adjust compression level, resize dimensions, and output formats.': '압축 수준, 크기 및 출력 형식을 조정하세요.',
+                'Compress multiple images at once to save time and effort.': '여러 이미지를 한 번에 압축하여 시간과 노력을 절약하세요.',
+                'All processing is done locally on your device. No images are uploaded to servers.': '모든 처리는 기기에서 로컬로 수행되며 이미지는 서버에 업로드되지 않습니다.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'JPG, PNG, WebP, GIF, SVG, ICO 형식 간 변환이 가능합니다.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': '데스크톱, 태블릿, 모바일에서 원활하게 작동합니다.'
+            },
+            'ar-SA': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'اسحب صورك أو اختر ملفات من جهازك. ندعم صيغ JPG وPNG وWebP وGIF وSVG وICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'اختر مستوى الضغط وصيغة الإخراج والأبعاد وحدود الحجم حسب احتياجك.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'اضغط الصور المحسنة ونزلها. تتم المعالجة محليًا ولا تغادر الصور جهازك.',
+                'Adjust compression level, resize dimensions, and output formats.': 'اضبط مستوى الضغط والأبعاد وصيغ الإخراج.',
+                'Compress multiple images at once to save time and effort.': 'اضغط عدة صور مرة واحدة لتوفير الوقت والجهد.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'تتم كل المعالجة محليًا على جهازك ولا يتم رفع الصور إلى الخوادم.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'حوّل بين صيغ JPG وPNG وWebP وGIF وSVG وICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'يعمل بسلاسة على سطح المكتب والجهاز اللوحي والهاتف.'
+            },
+            'hi-IN': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'अपनी छवियाँ खींचें या डिवाइस से फ़ाइलें चुनें। हम JPG, PNG, WebP, GIF, SVG और ICO फ़ॉर्मैट समर्थन करते हैं।',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'अपनी आवश्यकता के अनुसार कंप्रेशन स्तर, आउटपुट फ़ॉर्मैट, आयाम और फ़ाइल सीमा चुनें।',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'ऑप्टिमाइज़ की गई छवियाँ संपीड़ित करके डाउनलोड करें। सब कुछ स्थानीय रूप से होता है, छवियाँ डिवाइस से बाहर नहीं जातीं।',
+                'Adjust compression level, resize dimensions, and output formats.': 'कंप्रेशन स्तर, आयाम और आउटपुट फ़ॉर्मैट समायोजित करें।',
+                'Compress multiple images at once to save time and effort.': 'समय और मेहनत बचाने के लिए कई छवियाँ एक साथ संपीड़ित करें।',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'सारी प्रोसेसिंग आपके डिवाइस पर स्थानीय रूप से होती है। कोई छवि सर्वर पर अपलोड नहीं होती।',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'JPG, PNG, WebP, GIF, SVG और ICO फ़ॉर्मैट के बीच कन्वर्ट करें।',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'डेस्कटॉप, टैबलेट और मोबाइल पर सहज रूप से काम करता है।'
+            },
+            'ru-RU': {
+                'Drag and drop your images or select files from your device. We support JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Перетащите изображения или выберите файлы на устройстве. Поддерживаются JPG, PNG, WebP, GIF, SVG и ICO.',
+                'Choose compression level, output format, resize dimensions, and set file size limits according to your needs.': 'Выберите уровень сжатия, формат, размеры и ограничение файла под ваши задачи.',
+                'Compress and download your optimized images. All processing happens locally - your images never leave your device.': 'Сжимайте и скачивайте оптимизированные изображения. Обработка локальна — изображения не покидают устройство.',
+                'Adjust compression level, resize dimensions, and output formats.': 'Настраивайте уровень сжатия, размеры и выходные форматы.',
+                'Compress multiple images at once to save time and effort.': 'Сжимайте несколько изображений сразу, экономя время и усилия.',
+                'All processing is done locally on your device. No images are uploaded to servers.': 'Вся обработка выполняется локально на устройстве. Изображения не загружаются на серверы.',
+                'Convert between JPG, PNG, WebP, GIF, SVG and ICO formats.': 'Конвертируйте между JPG, PNG, WebP, GIF, SVG и ICO.',
+                'Works seamlessly on desktop, tablet, and mobile devices.': 'Работает на компьютерах, планшетах и мобильных устройствах.'
+            }
+        };
+        Object.keys(UI_SUPPLEMENTS).forEach(locale => Object.assign(UI_TEXT[locale], UI_SUPPLEMENTS[locale]));
+
+        const CONTACT_LINK = '<a href="mailto:support@squoosh.online" class="text-primary hover:underline">support@squoosh.online</a>';
+        const LEGAL_TEXT = {
+            'en-US': {
+                privacy: `<p class="mb-4">Last updated: November 7, 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Introduction</h4><p class="mb-4">This Privacy Policy explains how Image Compressor ("we", "our", or "us") collects, uses, and protects your information when you use our website and services. We are committed to protecting your privacy and the security of your personal data.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Data Collection and Processing</h4><p class="mb-4">Our service processes all images locally on your device. This means:</p><ul class="list-disc pl-6 mb-4"><li>No images are uploaded to our servers</li><li>No personal data is collected or stored by us</li><li>All processing occurs in your browser</li><li>We do not track your usage or collect analytics data</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Third-Party Services</h4><p class="mb-4">Our website may include links to third-party websites or services. We are not responsible for the privacy practices or content of those third-party sites.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookies</h4><p class="mb-4">We do not use cookies or similar tracking technologies to collect information about your browsing activities.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Children's Privacy</h4><p class="mb-4">Our services are not intended for children under 13, and we do not knowingly collect personal information from children under 13.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Changes to This Privacy Policy</h4><p class="mb-4">We may update this Privacy Policy from time to time by posting the updated version on this page.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Contact Us</h4><p class="mb-4">If you have questions or concerns about this Privacy Policy, contact us at: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Last updated: November 7, 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Acceptance of Terms</h4><p class="mb-4">By accessing or using Image Compressor (the "Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Description of Service</h4><p class="mb-4">Image Compressor provides a free online tool for compressing, resizing, and converting images. The Service is provided "as is" and "as available" without warranties of any kind.</p><h4 class="text-xl font-semibold mt-6 mb-3">3. User Responsibilities</h4><p class="mb-4">You agree to use the Service only for lawful purposes. You are solely responsible for the images you process and for having the rights and permissions required for those images.</p><ul class="list-disc pl-6 mb-4"><li>Do not process images that violate copyright, trademark, or other intellectual property rights</li><li>Do not process unlawful, obscene, pornographic, violent, or offensive images</li><li>Do not process images that invade another person’s privacy</li><li>Do not process images containing malware or harmful content</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Limitation of Liability</h4><p class="mb-4">Image Compressor and its owners are not liable for direct, indirect, incidental, special, or consequential damages arising from use of the Service.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Intellectual Property</h4><p class="mb-4">The Service and its content are owned by Image Compressor or its licensors and are protected by intellectual property laws.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Modifications to the Service</h4><p class="mb-4">We may modify, suspend, or discontinue the Service at any time without prior notice.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Termination</h4><p class="mb-4">We may terminate or suspend access to the Service at any time, including for violations of these Terms.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Governing Law</h4><p class="mb-4">These Terms are governed by the laws of the State of California, United States, without regard to conflict-of-law rules.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Contact Us</h4><p class="mb-4">For questions about these Terms, contact us at: ${CONTACT_LINK}</p>`
+            },
+            'zh-CN': {
+                privacy: `<p class="mb-4">最后更新：2025 年 11 月 7 日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 引言</h4><p class="mb-4">本隐私政策说明图像压缩器（“我们”）在你使用本网站和服务时如何收集、使用和保护信息。我们重视你的隐私和个人数据安全。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 数据收集与处理</h4><p class="mb-4">本服务会在你的设备本地处理所有图片，这意味着：</p><ul class="list-disc pl-6 mb-4"><li>图片不会上传到我们的服务器</li><li>我们不会收集或存储个人数据</li><li>所有处理都在你的浏览器中完成</li><li>我们不会跟踪你的使用行为或收集分析数据</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. 第三方服务</h4><p class="mb-4">网站可能包含第三方网站或服务链接。我们不对第三方网站的隐私做法或内容负责。</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookie</h4><p class="mb-4">我们不使用 Cookie 或类似跟踪技术来收集你的浏览活动信息。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 儿童隐私</h4><p class="mb-4">本服务不面向 13 岁以下儿童，我们不会有意收集 13 岁以下儿童的个人信息。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 隐私政策变更</h4><p class="mb-4">我们可能不时更新本政策，并在本页面发布更新后的版本。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 联系我们</h4><p class="mb-4">如对本隐私政策有疑问，请联系：${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">最后更新：2025 年 11 月 7 日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 接受条款</h4><p class="mb-4">访问或使用图像压缩器（“服务”）即表示你同意受本服务条款约束。如不同意，请勿使用本服务。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 服务说明</h4><p class="mb-4">图像压缩器提供免费的在线图片压缩、调整尺寸和格式转换工具。本服务按“现状”和“可用”提供，不作任何形式保证。</p><h4 class="text-xl font-semibold mt-6 mb-3">3. 用户责任</h4><p class="mb-4">你同意仅为合法目的使用本服务，并对所处理图片及其权利授权承担全部责任。</p><ul class="list-disc pl-6 mb-4"><li>不得处理侵犯版权、商标或其他知识产权的图片</li><li>不得处理违法、淫秽、色情、暴力或冒犯性图片</li><li>不得处理侵犯他人隐私的图片</li><li>不得处理含恶意软件或有害内容的图片</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. 责任限制</h4><p class="mb-4">对于因使用本服务产生的任何直接、间接、附带、特殊或后果性损害，图像压缩器及其所有者不承担责任。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 知识产权</h4><p class="mb-4">本服务及其内容归图像压缩器或其许可方所有，并受知识产权法律保护。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 服务变更</h4><p class="mb-4">我们可随时修改、暂停或终止本服务，恕不另行通知。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 终止</h4><p class="mb-4">我们可随时终止或暂停你对本服务的访问，包括因违反本条款。</p><h4 class="text-xl font-semibold mt-6 mb-3">8. 适用法律</h4><p class="mb-4">本条款受美国加利福尼亚州法律管辖，不考虑冲突法规则。</p><h4 class="text-xl font-semibold mt-6 mb-3">9. 联系我们</h4><p class="mb-4">如对本服务条款有疑问，请联系：${CONTACT_LINK}</p>`
+            },
+            'zh-TW': {
+                privacy: `<p class="mb-4">最後更新：2025 年 11 月 7 日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 引言</h4><p class="mb-4">本隱私權政策說明圖片壓縮器（「我們」）在你使用本網站與服務時如何收集、使用與保護資訊。我們重視你的隱私與個人資料安全。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 資料收集與處理</h4><p class="mb-4">本服務會在你的裝置本機處理所有圖片，這表示：</p><ul class="list-disc pl-6 mb-4"><li>圖片不會上傳至我們的伺服器</li><li>我們不會收集或儲存個人資料</li><li>所有處理都在你的瀏覽器中完成</li><li>我們不會追蹤使用行為或收集分析資料</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. 第三方服務</h4><p class="mb-4">網站可能包含第三方網站或服務連結。我們不對第三方網站的隱私做法或內容負責。</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookie</h4><p class="mb-4">我們不使用 Cookie 或類似追蹤技術來收集你的瀏覽活動資訊。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 兒童隱私</h4><p class="mb-4">本服務不面向 13 歲以下兒童，我們不會故意收集其個人資訊。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 政策變更</h4><p class="mb-4">我們可能不時更新本政策，並在本頁發布更新版本。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 聯絡我們</h4><p class="mb-4">如對本政策有疑問，請聯絡：${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">最後更新：2025 年 11 月 7 日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 接受條款</h4><p class="mb-4">存取或使用圖片壓縮器（「服務」）即表示你同意受本服務條款約束。如不同意，請勿使用本服務。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 服務說明</h4><p class="mb-4">圖片壓縮器提供免費線上圖片壓縮、調整尺寸與格式轉換工具。本服務按「現狀」與「可用」提供，不作任何保證。</p><h4 class="text-xl font-semibold mt-6 mb-3">3. 使用者責任</h4><p class="mb-4">你同意僅為合法目的使用本服務，並對所處理圖片及其權利授權負全部責任。</p><ul class="list-disc pl-6 mb-4"><li>不得處理侵犯智慧財產權的圖片</li><li>不得處理違法、猥褻、色情、暴力或冒犯性圖片</li><li>不得處理侵犯他人隱私的圖片</li><li>不得處理含惡意軟體或有害內容的圖片</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. 責任限制</h4><p class="mb-4">對於因使用本服務產生的任何直接、間接、附帶、特殊或後果性損害，圖片壓縮器及其所有者不負責任。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 智慧財產權</h4><p class="mb-4">本服務及其內容歸圖片壓縮器或其授權方所有，並受智慧財產權法律保護。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 服務變更</h4><p class="mb-4">我們可隨時修改、暫停或終止本服務，恕不另行通知。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 終止</h4><p class="mb-4">我們可隨時終止或暫停你對本服務的存取，包括因違反本條款。</p><h4 class="text-xl font-semibold mt-6 mb-3">8. 準據法</h4><p class="mb-4">本條款受美國加利福尼亞州法律管轄，不考慮衝突法規則。</p><h4 class="text-xl font-semibold mt-6 mb-3">9. 聯絡我們</h4><p class="mb-4">如對本條款有疑問，請聯絡：${CONTACT_LINK}</p>`
+            }
+        };
+        LEGAL_TEXT['es-ES'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','Última actualización: 7 de noviembre de 2025').replace('1. Introduction','1. Introducción').replace('2. Data Collection and Processing','2. Recopilación y procesamiento de datos').replace('3. Third-Party Services','3. Servicios de terceros').replace('4. Cookies','4. Cookies').replace("5. Children's Privacy",'5. Privacidad de menores').replace('6. Changes to This Privacy Policy','6. Cambios en esta política').replace('7. Contact Us','7. Contacto'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','Última actualización: 7 de noviembre de 2025').replace('1. Acceptance of Terms','1. Aceptación de los términos').replace('2. Description of Service','2. Descripción del servicio').replace('3. User Responsibilities','3. Responsabilidades del usuario').replace('4. Limitation of Liability','4. Limitación de responsabilidad').replace('5. Intellectual Property','5. Propiedad intelectual').replace('6. Modifications to the Service','6. Cambios en el servicio').replace('7. Termination','7. Terminación').replace('8. Governing Law','8. Ley aplicable').replace('9. Contact Us','9. Contacto') };
+        LEGAL_TEXT['fr-FR'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','Dernière mise à jour : 7 novembre 2025').replace('1. Introduction','1. Introduction').replace('2. Data Collection and Processing','2. Collecte et traitement des données').replace('3. Third-Party Services','3. Services tiers').replace("5. Children's Privacy",'5. Confidentialité des enfants').replace('6. Changes to This Privacy Policy','6. Modifications de cette politique').replace('7. Contact Us','7. Nous contacter'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','Dernière mise à jour : 7 novembre 2025').replace('1. Acceptance of Terms','1. Acceptation des conditions').replace('2. Description of Service','2. Description du service').replace('3. User Responsibilities','3. Responsabilités de l’utilisateur').replace('4. Limitation of Liability','4. Limitation de responsabilité').replace('5. Intellectual Property','5. Propriété intellectuelle').replace('6. Modifications to the Service','6. Modifications du service').replace('7. Termination','7. Résiliation').replace('8. Governing Law','8. Droit applicable').replace('9. Contact Us','9. Nous contacter') };
+        LEGAL_TEXT['de-DE'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','Zuletzt aktualisiert: 7. November 2025').replace('1. Introduction','1. Einführung').replace('2. Data Collection and Processing','2. Datenerhebung und Verarbeitung').replace('3. Third-Party Services','3. Dienste Dritter').replace("5. Children's Privacy",'5. Datenschutz von Kindern').replace('6. Changes to This Privacy Policy','6. Änderungen dieser Erklärung').replace('7. Contact Us','7. Kontakt'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','Zuletzt aktualisiert: 7. November 2025').replace('1. Acceptance of Terms','1. Annahme der Bedingungen').replace('2. Description of Service','2. Beschreibung des Dienstes').replace('3. User Responsibilities','3. Pflichten der Nutzer').replace('4. Limitation of Liability','4. Haftungsbeschränkung').replace('5. Intellectual Property','5. Geistiges Eigentum').replace('6. Modifications to the Service','6. Änderungen des Dienstes').replace('7. Termination','7. Beendigung').replace('8. Governing Law','8. Anwendbares Recht').replace('9. Contact Us','9. Kontakt') };
+        LEGAL_TEXT['pt-BR'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','Última atualização: 7 de novembro de 2025').replace('1. Introduction','1. Introdução').replace('2. Data Collection and Processing','2. Coleta e processamento de dados').replace('3. Third-Party Services','3. Serviços de terceiros').replace("5. Children's Privacy",'5. Privacidade de crianças').replace('6. Changes to This Privacy Policy','6. Alterações nesta política').replace('7. Contact Us','7. Contato'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','Última atualização: 7 de novembro de 2025').replace('1. Acceptance of Terms','1. Aceitação dos termos').replace('2. Description of Service','2. Descrição do serviço').replace('3. User Responsibilities','3. Responsabilidades do usuário').replace('4. Limitation of Liability','4. Limitação de responsabilidade').replace('5. Intellectual Property','5. Propriedade intelectual').replace('6. Modifications to the Service','6. Alterações no serviço').replace('7. Termination','7. Encerramento').replace('8. Governing Law','8. Lei aplicável').replace('9. Contact Us','9. Contato') };
+        LEGAL_TEXT['ja-JP'] = { privacy: LEGAL_TEXT['zh-CN'].privacy.replaceAll('图像压缩器','画像圧縮ツール').replace('最后更新：2025 年 11 月 7 日','最終更新日：2025年11月7日').replace('1. 引言','1. はじめに').replace('2. 数据收集与处理','2. データの収集と処理').replace('3. 第三方服务','3. 第三者サービス').replace('4. Cookie','4. Cookie').replace('5. 儿童隐私','5. 児童のプライバシー').replace('6. 隐私政策变更','6. 本ポリシーの変更').replace('7. 联系我们','7. お問い合わせ'), terms: LEGAL_TEXT['zh-CN'].terms.replaceAll('图像压缩器','画像圧縮ツール').replace('最后更新：2025 年 11 月 7 日','最終更新日：2025年11月7日').replace('1. 接受条款','1. 規約への同意').replace('2. 服务说明','2. サービス内容').replace('3. 用户责任','3. ユーザーの責任').replace('4. 责任限制','4. 責任の制限').replace('5. 知识产权','5. 知的財産権').replace('6. 服务变更','6. サービスの変更').replace('7. 终止','7. 終了').replace('8. 适用法律','8. 準拠法').replace('9. 联系我们','9. お問い合わせ') };
+        LEGAL_TEXT['ko-KR'] = { privacy: LEGAL_TEXT['zh-CN'].privacy.replaceAll('图像压缩器','이미지 압축기').replace('最后更新：2025 年 11 月 7 日','최종 업데이트: 2025년 11월 7일').replace('1. 引言','1. 소개').replace('2. 数据收集与处理','2. 데이터 수집 및 처리').replace('3. 第三方服务','3. 제3자 서비스').replace('5. 儿童隐私','5. 아동 개인정보').replace('6. 隐私政策变更','6. 정책 변경').replace('7. 联系我们','7. 문의'), terms: LEGAL_TEXT['zh-CN'].terms.replaceAll('图像压缩器','이미지 압축기').replace('最后更新：2025 年 11 月 7 日','최종 업데이트: 2025년 11월 7일').replace('1. 接受条款','1. 약관 동의').replace('2. 服务说明','2. 서비스 설명').replace('3. 用户责任','3. 사용자 책임').replace('4. 责任限制','4. 책임 제한').replace('5. 知识产权','5. 지식재산권').replace('6. 服务变更','6. 서비스 변경').replace('7. 终止','7. 종료').replace('8. 适用法律','8. 준거법').replace('9. 联系我们','9. 문의') };
+        LEGAL_TEXT['ar-SA'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','آخر تحديث: 7 نوفمبر 2025').replace('1. Introduction','1. مقدمة').replace('2. Data Collection and Processing','2. جمع البيانات ومعالجتها').replace('3. Third-Party Services','3. خدمات الجهات الخارجية').replace('4. Cookies','4. ملفات تعريف الارتباط').replace("5. Children's Privacy",'5. خصوصية الأطفال').replace('6. Changes to This Privacy Policy','6. تغييرات سياسة الخصوصية').replace('7. Contact Us','7. اتصل بنا'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','آخر تحديث: 7 نوفمبر 2025').replace('1. Acceptance of Terms','1. قبول الشروط').replace('2. Description of Service','2. وصف الخدمة').replace('3. User Responsibilities','3. مسؤوليات المستخدم').replace('4. Limitation of Liability','4. تحديد المسؤولية').replace('5. Intellectual Property','5. الملكية الفكرية').replace('6. Modifications to the Service','6. تعديلات الخدمة').replace('7. Termination','7. الإنهاء').replace('8. Governing Law','8. القانون الحاكم').replace('9. Contact Us','9. اتصل بنا') };
+        LEGAL_TEXT['hi-IN'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','अंतिम अपडेट: 7 नवंबर 2025').replace('1. Introduction','1. परिचय').replace('2. Data Collection and Processing','2. डेटा संग्रह और प्रोसेसिंग').replace('3. Third-Party Services','3. तृतीय-पक्ष सेवाएँ').replace('4. Cookies','4. कुकीज़').replace("5. Children's Privacy",'5. बच्चों की गोपनीयता').replace('6. Changes to This Privacy Policy','6. इस नीति में बदलाव').replace('7. Contact Us','7. संपर्क करें'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','अंतिम अपडेट: 7 नवंबर 2025').replace('1. Acceptance of Terms','1. शर्तों की स्वीकृति').replace('2. Description of Service','2. सेवा का विवरण').replace('3. User Responsibilities','3. उपयोगकर्ता जिम्मेदारियाँ').replace('4. Limitation of Liability','4. देयता की सीमा').replace('5. Intellectual Property','5. बौद्धिक संपदा').replace('6. Modifications to the Service','6. सेवा में बदलाव').replace('7. Termination','7. समाप्ति').replace('8. Governing Law','8. लागू कानून').replace('9. Contact Us','9. संपर्क करें') };
+        LEGAL_TEXT['ru-RU'] = { privacy: LEGAL_TEXT['en-US'].privacy.replace('Last updated: November 7, 2025','Последнее обновление: 7 ноября 2025 г.').replace('1. Introduction','1. Введение').replace('2. Data Collection and Processing','2. Сбор и обработка данных').replace('3. Third-Party Services','3. Сторонние сервисы').replace('4. Cookies','4. Файлы cookie').replace("5. Children's Privacy",'5. Конфиденциальность детей').replace('6. Changes to This Privacy Policy','6. Изменения политики').replace('7. Contact Us','7. Связаться с нами'), terms: LEGAL_TEXT['en-US'].terms.replace('Last updated: November 7, 2025','Последнее обновление: 7 ноября 2025 г.').replace('1. Acceptance of Terms','1. Принятие условий').replace('2. Description of Service','2. Описание сервиса').replace('3. User Responsibilities','3. Обязанности пользователя').replace('4. Limitation of Liability','4. Ограничение ответственности').replace('5. Intellectual Property','5. Интеллектуальная собственность').replace('6. Modifications to the Service','6. Изменения сервиса').replace('7. Termination','7. Прекращение').replace('8. Governing Law','8. Применимое право').replace('9. Contact Us','9. Связаться с нами') };
+
+
+        Object.assign(LEGAL_TEXT, {
+            'es-ES': {
+                privacy: `<p class="mb-4">Última actualización: 7 de noviembre de 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Introducción</h4><p class="mb-4">Esta Política de privacidad explica cómo Compresor de imágenes ("nosotros") protege la información cuando utilizas nuestro sitio y servicios. Nos comprometemos a preservar tu privacidad y la seguridad de tus datos.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Recopilación y procesamiento de datos</h4><p class="mb-4">Todas las imágenes se procesan localmente en tu dispositivo. Esto significa:</p><ul class="list-disc pl-6 mb-4"><li>No subimos imágenes a nuestros servidores</li><li>No recopilamos ni almacenamos datos personales</li><li>Todo el procesamiento ocurre en tu navegador</li><li>No rastreamos tu uso ni recopilamos datos analíticos</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Servicios de terceros</h4><p class="mb-4">El sitio puede incluir enlaces a servicios de terceros. No somos responsables de sus prácticas de privacidad ni de su contenido.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookies</h4><p class="mb-4">No usamos cookies ni tecnologías similares para recopilar información sobre tu navegación.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Privacidad de menores</h4><p class="mb-4">El servicio no está dirigido a menores de 13 años y no recopilamos intencionalmente información de ellos.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Cambios</h4><p class="mb-4">Podemos actualizar esta política publicando una nueva versión en esta página.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Contacto</h4><p class="mb-4">Si tienes preguntas, contáctanos en: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Última actualización: 7 de noviembre de 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Aceptación de los términos</h4><p class="mb-4">Al acceder o utilizar Compresor de imágenes (el "Servicio"), aceptas estos Términos. Si no estás de acuerdo, no uses el Servicio.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Descripción del servicio</h4><p class="mb-4">El Servicio ofrece una herramienta gratuita para comprimir, redimensionar y convertir imágenes. Se proporciona "tal cual" y "según disponibilidad".</p><h4 class="text-xl font-semibold mt-6 mb-3">3. Responsabilidades del usuario</h4><p class="mb-4">Debes usar el Servicio solo con fines lícitos y eres responsable de tener derechos sobre las imágenes procesadas.</p><ul class="list-disc pl-6 mb-4"><li>No proceses imágenes que infrinjan derechos de autor, marcas u otros derechos</li><li>No proceses contenido ilegal, obsceno, pornográfico, violento u ofensivo</li><li>No proceses imágenes que invadan la privacidad de otras personas</li><li>No proceses archivos con malware o contenido dañino</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Limitación de responsabilidad</h4><p class="mb-4">No seremos responsables de daños directos, indirectos, incidentales, especiales o consecuentes derivados del uso del Servicio.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Propiedad intelectual</h4><p class="mb-4">El Servicio y su contenido pertenecen a Compresor de imágenes o sus licenciantes y están protegidos por leyes de propiedad intelectual.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Cambios del servicio</h4><p class="mb-4">Podemos modificar, suspender o interrumpir el Servicio en cualquier momento sin aviso previo.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Terminación</h4><p class="mb-4">Podemos suspender o terminar tu acceso, incluso por incumplimiento de estos Términos.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Ley aplicable</h4><p class="mb-4">Estos Términos se rigen por las leyes del Estado de California, Estados Unidos.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Contacto</h4><p class="mb-4">Para preguntas sobre estos Términos: ${CONTACT_LINK}</p>`
+            },
+            'fr-FR': {
+                privacy: `<p class="mb-4">Dernière mise à jour : 7 novembre 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Introduction</h4><p class="mb-4">Cette Politique de confidentialité explique comment Compresseur d’images ("nous") protège les informations lorsque vous utilisez notre site et nos services. Nous nous engageons à préserver votre vie privée et la sécurité de vos données.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Collecte et traitement des données</h4><p class="mb-4">Toutes les images sont traitées localement sur votre appareil. Cela signifie :</p><ul class="list-disc pl-6 mb-4"><li>Aucune image n’est envoyée à nos serveurs</li><li>Aucune donnée personnelle n’est collectée ou stockée par nous</li><li>Le traitement s’effectue dans votre navigateur</li><li>Nous ne suivons pas votre utilisation et ne collectons pas de données d’analyse</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Services tiers</h4><p class="mb-4">Le site peut contenir des liens vers des services tiers. Nous ne sommes pas responsables de leurs pratiques de confidentialité ni de leur contenu.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookies</h4><p class="mb-4">Nous n’utilisons pas de cookies ni de technologies similaires pour collecter des informations de navigation.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Confidentialité des enfants</h4><p class="mb-4">Le service n’est pas destiné aux enfants de moins de 13 ans et nous ne collectons pas sciemment leurs informations.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Modifications</h4><p class="mb-4">Nous pouvons mettre cette politique à jour en publiant une nouvelle version sur cette page.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Contact</h4><p class="mb-4">Pour toute question, contactez-nous : ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Dernière mise à jour : 7 novembre 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Acceptation des conditions</h4><p class="mb-4">En accédant à Compresseur d’images (le "Service") ou en l’utilisant, vous acceptez ces Conditions. Si vous n’êtes pas d’accord, n’utilisez pas le Service.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Description du service</h4><p class="mb-4">Le Service fournit un outil gratuit pour compresser, redimensionner et convertir des images. Il est fourni "tel quel" et "selon disponibilité".</p><h4 class="text-xl font-semibold mt-6 mb-3">3. Responsabilités de l’utilisateur</h4><p class="mb-4">Vous devez utiliser le Service uniquement à des fins licites et disposer des droits nécessaires sur les images traitées.</p><ul class="list-disc pl-6 mb-4"><li>Ne traitez pas d’images violant des droits d’auteur, marques ou autres droits</li><li>Ne traitez pas de contenus illégaux, obscènes, pornographiques, violents ou offensants</li><li>Ne traitez pas d’images portant atteinte à la vie privée d’autrui</li><li>Ne traitez pas de fichiers contenant des logiciels malveillants ou nuisibles</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Limitation de responsabilité</h4><p class="mb-4">Nous ne sommes pas responsables des dommages directs, indirects, accessoires, spéciaux ou consécutifs liés à l’utilisation du Service.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Propriété intellectuelle</h4><p class="mb-4">Le Service et son contenu appartiennent à Compresseur d’images ou à ses concédants et sont protégés par les lois de propriété intellectuelle.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Modifications du service</h4><p class="mb-4">Nous pouvons modifier, suspendre ou interrompre le Service à tout moment sans préavis.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Résiliation</h4><p class="mb-4">Nous pouvons suspendre ou résilier votre accès, notamment en cas de violation de ces Conditions.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Droit applicable</h4><p class="mb-4">Ces Conditions sont régies par les lois de l’État de Californie, États-Unis.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Contact</h4><p class="mb-4">Pour toute question : ${CONTACT_LINK}</p>`
+            },
+            'de-DE': {
+                privacy: `<p class="mb-4">Zuletzt aktualisiert: 7. November 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Einführung</h4><p class="mb-4">Diese Datenschutzerklärung erläutert, wie Bildkompressor ("wir") Informationen schützt, wenn du unsere Website und Dienste nutzt. Wir verpflichten uns zum Schutz deiner Privatsphäre und deiner Daten.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Datenerhebung und Verarbeitung</h4><p class="mb-4">Alle Bilder werden lokal auf deinem Gerät verarbeitet. Das bedeutet:</p><ul class="list-disc pl-6 mb-4"><li>Keine Bilder werden auf unsere Server hochgeladen</li><li>Wir erfassen oder speichern keine personenbezogenen Daten</li><li>Die Verarbeitung findet in deinem Browser statt</li><li>Wir verfolgen deine Nutzung nicht und sammeln keine Analysedaten</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Dienste Dritter</h4><p class="mb-4">Die Website kann Links zu Diensten Dritter enthalten. Für deren Datenschutzpraktiken oder Inhalte sind wir nicht verantwortlich.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookies</h4><p class="mb-4">Wir verwenden keine Cookies oder ähnliche Tracking-Technologien zur Erfassung deines Surfverhaltens.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Datenschutz von Kindern</h4><p class="mb-4">Der Dienst richtet sich nicht an Kinder unter 13 Jahren; wir erfassen wissentlich keine Daten von ihnen.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Änderungen</h4><p class="mb-4">Wir können diese Erklärung aktualisieren, indem wir eine neue Version auf dieser Seite veröffentlichen.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Kontakt</h4><p class="mb-4">Bei Fragen kontaktiere uns unter: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Zuletzt aktualisiert: 7. November 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Annahme der Bedingungen</h4><p class="mb-4">Mit Zugriff auf oder Nutzung von Bildkompressor (dem "Dienst") akzeptierst du diese Bedingungen. Wenn du nicht einverstanden bist, nutze den Dienst nicht.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Beschreibung des Dienstes</h4><p class="mb-4">Der Dienst bietet ein kostenloses Tool zum Komprimieren, Ändern der Größe und Konvertieren von Bildern. Er wird "wie besehen" und "wie verfügbar" bereitgestellt.</p><h4 class="text-xl font-semibold mt-6 mb-3">3. Pflichten der Nutzer</h4><p class="mb-4">Du darfst den Dienst nur rechtmäßig nutzen und bist für die Rechte an den verarbeiteten Bildern verantwortlich.</p><ul class="list-disc pl-6 mb-4"><li>Keine Bilder verarbeiten, die Urheberrechte, Marken oder andere Rechte verletzen</li><li>Keine rechtswidrigen, obszönen, pornografischen, gewalttätigen oder beleidigenden Inhalte verarbeiten</li><li>Keine Bilder verarbeiten, die die Privatsphäre anderer verletzen</li><li>Keine Dateien mit Malware oder schädlichen Inhalten verarbeiten</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Haftungsbeschränkung</h4><p class="mb-4">Wir haften nicht für direkte, indirekte, beiläufige, besondere oder Folgeschäden aus der Nutzung des Dienstes.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Geistiges Eigentum</h4><p class="mb-4">Der Dienst und seine Inhalte gehören Bildkompressor oder seinen Lizenzgebern und sind rechtlich geschützt.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Änderungen des Dienstes</h4><p class="mb-4">Wir können den Dienst jederzeit ohne Vorankündigung ändern, aussetzen oder einstellen.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Beendigung</h4><p class="mb-4">Wir können deinen Zugriff aussetzen oder beenden, insbesondere bei Verstößen gegen diese Bedingungen.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Anwendbares Recht</h4><p class="mb-4">Diese Bedingungen unterliegen dem Recht des Staates Kalifornien, USA.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Kontakt</h4><p class="mb-4">Fragen zu diesen Bedingungen: ${CONTACT_LINK}</p>`
+            }
+        });
+        Object.assign(LEGAL_TEXT, {
+            'pt-BR': {
+                privacy: `<p class="mb-4">Última atualização: 7 de novembro de 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Introdução</h4><p class="mb-4">Esta Política de Privacidade explica como o Compressor de imagens ("nós") protege informações quando você usa nosso site e serviços. Valorizamos sua privacidade e a segurança dos seus dados.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Coleta e processamento de dados</h4><p class="mb-4">Todas as imagens são processadas localmente no seu dispositivo. Isso significa:</p><ul class="list-disc pl-6 mb-4"><li>Nenhuma imagem é enviada aos nossos servidores</li><li>Não coletamos nem armazenamos dados pessoais</li><li>Todo o processamento ocorre no navegador</li><li>Não rastreamos seu uso nem coletamos dados analíticos</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Serviços de terceiros</h4><p class="mb-4">O site pode conter links para terceiros. Não somos responsáveis por suas práticas de privacidade ou conteúdo.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookies</h4><p class="mb-4">Não usamos cookies ou tecnologias semelhantes para coletar informações de navegação.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Privacidade de crianças</h4><p class="mb-4">O serviço não é destinado a menores de 13 anos e não coletamos intencionalmente dados deles.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Alterações</h4><p class="mb-4">Podemos atualizar esta política publicando uma nova versão nesta página.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Contato</h4><p class="mb-4">Dúvidas? Fale conosco: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Última atualização: 7 de novembro de 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Aceitação dos termos</h4><p class="mb-4">Ao acessar ou usar o Compressor de imagens (o "Serviço"), você concorda com estes Termos. Se não concordar, não use o Serviço.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Descrição do serviço</h4><p class="mb-4">O Serviço fornece uma ferramenta gratuita para comprimir, redimensionar e converter imagens, oferecida "como está" e "conforme disponível".</p><h4 class="text-xl font-semibold mt-6 mb-3">3. Responsabilidades do usuário</h4><p class="mb-4">Use o Serviço apenas para fins legais e garanta que tem os direitos necessários sobre as imagens processadas.</p><ul class="list-disc pl-6 mb-4"><li>Não processe imagens que violem direitos autorais, marcas ou outros direitos</li><li>Não processe conteúdo ilegal, obsceno, pornográfico, violento ou ofensivo</li><li>Não processe imagens que violem a privacidade de terceiros</li><li>Não processe arquivos com malware ou conteúdo prejudicial</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Limitação de responsabilidade</h4><p class="mb-4">Não seremos responsáveis por danos diretos, indiretos, incidentais, especiais ou consequenciais decorrentes do uso do Serviço.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Propriedade intelectual</h4><p class="mb-4">O Serviço e seu conteúdo pertencem ao Compressor de imagens ou licenciadores e são protegidos por leis de propriedade intelectual.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Alterações no serviço</h4><p class="mb-4">Podemos modificar, suspender ou encerrar o Serviço a qualquer momento sem aviso.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Encerramento</h4><p class="mb-4">Podemos suspender ou encerrar seu acesso, inclusive por violação destes Termos.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Lei aplicável</h4><p class="mb-4">Estes Termos são regidos pelas leis do Estado da Califórnia, Estados Unidos.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Contato</h4><p class="mb-4">Perguntas sobre estes Termos: ${CONTACT_LINK}</p>`
+            },
+            'ja-JP': {
+                privacy: `<p class="mb-4">最終更新日：2025年11月7日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. はじめに</h4><p class="mb-4">本プライバシーポリシーは、画像圧縮ツール（「当社」）が本サイトおよびサービス利用時の情報をどのように保護するかを説明します。当社はプライバシーとデータの安全性を重視します。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. データの収集と処理</h4><p class="mb-4">すべての画像は端末上でローカル処理されます。つまり：</p><ul class="list-disc pl-6 mb-4"><li>画像は当社サーバーへアップロードされません</li><li>個人データは収集または保存されません</li><li>処理はブラウザ内で完結します</li><li>利用状況の追跡や分析データの収集は行いません</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. 第三者サービス</h4><p class="mb-4">本サイトには第三者サービスへのリンクが含まれる場合があります。当社はそれらのプライバシー慣行や内容について責任を負いません。</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Cookie</h4><p class="mb-4">当社は閲覧行動を収集するために Cookie や類似技術を使用しません。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 児童のプライバシー</h4><p class="mb-4">本サービスは13歳未満の児童を対象としておらず、その個人情報を意図的に収集しません。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 変更</h4><p class="mb-4">本ポリシーは、このページに更新版を掲載することで変更される場合があります。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. お問い合わせ</h4><p class="mb-4">ご質問は次までご連絡ください：${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">最終更新日：2025年11月7日</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 規約への同意</h4><p class="mb-4">画像圧縮ツール（「サービス」）にアクセスまたは利用することで、本規約に同意したものとみなされます。同意しない場合は利用しないでください。</p><h4 class="text-xl font-semibold mt-6 mb-3">2. サービス内容</h4><p class="mb-4">本サービスは画像の圧縮、サイズ変更、形式変換を行う無料ツールであり、「現状有姿」および「提供可能な範囲」で提供されます。</p><h4 class="text-xl font-semibold mt-6 mb-3">3. ユーザーの責任</h4><p class="mb-4">合法的な目的でのみ利用し、処理する画像に必要な権利を有していることについて責任を負います。</p><ul class="list-disc pl-6 mb-4"><li>著作権、商標権その他の権利を侵害する画像を処理しないこと</li><li>違法、わいせつ、ポルノ、暴力的または攻撃的な内容を処理しないこと</li><li>他者のプライバシーを侵害する画像を処理しないこと</li><li>マルウェアや有害な内容を含むファイルを処理しないこと</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. 責任の制限</h4><p class="mb-4">当社は本サービスの利用に起因する直接、間接、付随、特別または結果的損害について責任を負いません。</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 知的財産権</h4><p class="mb-4">本サービスおよびその内容は画像圧縮ツールまたはライセンサーに帰属し、知的財産法で保護されます。</p><h4 class="text-xl font-semibold mt-6 mb-3">6. サービス変更</h4><p class="mb-4">当社は事前通知なく本サービスを変更、一時停止または終了できます。</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 終了</h4><p class="mb-4">本規約違反を含む理由により、アクセスを停止または終了する場合があります。</p><h4 class="text-xl font-semibold mt-6 mb-3">8. 準拠法</h4><p class="mb-4">本規約は米国カリフォルニア州法に準拠します。</p><h4 class="text-xl font-semibold mt-6 mb-3">9. お問い合わせ</h4><p class="mb-4">本規約に関するご質問：${CONTACT_LINK}</p>`
+            }
+        });
+        Object.assign(LEGAL_TEXT, {
+            'ko-KR': {
+                privacy: `<p class="mb-4">최종 업데이트: 2025년 11월 7일</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 소개</h4><p class="mb-4">본 개인정보 처리방침은 이미지 압축기(“당사”)가 사이트와 서비스를 사용할 때 정보를 어떻게 보호하는지 설명합니다. 당사는 개인정보와 데이터 보안을 중요하게 생각합니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 데이터 수집 및 처리</h4><p class="mb-4">모든 이미지는 사용자의 기기에서 로컬로 처리됩니다. 즉:</p><ul class="list-disc pl-6 mb-4"><li>이미지는 당사 서버로 업로드되지 않습니다</li><li>당사는 개인정보를 수집하거나 저장하지 않습니다</li><li>모든 처리는 브라우저 안에서 이루어집니다</li><li>사용 내역을 추적하거나 분석 데이터를 수집하지 않습니다</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. 제3자 서비스</h4><p class="mb-4">사이트에는 제3자 서비스 링크가 포함될 수 있으며, 당사는 해당 서비스의 개인정보 관행이나 콘텐츠에 책임을 지지 않습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. 쿠키</h4><p class="mb-4">당사는 브라우징 활동을 수집하기 위해 쿠키나 유사 기술을 사용하지 않습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 아동 개인정보</h4><p class="mb-4">서비스는 13세 미만 아동을 대상으로 하지 않으며, 해당 아동의 정보를 고의로 수집하지 않습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 변경</h4><p class="mb-4">본 방침은 이 페이지에 새 버전을 게시하여 업데이트될 수 있습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 문의</h4><p class="mb-4">문의: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">최종 업데이트: 2025년 11월 7일</p><h4 class="text-xl font-semibold mt-6 mb-3">1. 약관 동의</h4><p class="mb-4">이미지 압축기(“서비스”)에 접근하거나 사용하면 본 약관에 동의하는 것입니다. 동의하지 않으면 사용하지 마세요.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. 서비스 설명</h4><p class="mb-4">서비스는 이미지 압축, 크기 조정 및 형식 변환을 위한 무료 도구이며 “있는 그대로”, “제공 가능한 상태”로 제공됩니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">3. 사용자 책임</h4><p class="mb-4">서비스를 합법적인 목적으로만 사용해야 하며, 처리하는 이미지에 필요한 권리를 보유해야 합니다.</p><ul class="list-disc pl-6 mb-4"><li>저작권, 상표권 또는 기타 권리를 침해하는 이미지를 처리하지 마세요</li><li>불법, 외설, 음란, 폭력적 또는 모욕적인 콘텐츠를 처리하지 마세요</li><li>타인의 개인정보를 침해하는 이미지를 처리하지 마세요</li><li>악성코드나 유해 콘텐츠가 포함된 파일을 처리하지 마세요</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. 책임 제한</h4><p class="mb-4">당사는 서비스 사용으로 발생하는 직접, 간접, 부수, 특별 또는 결과적 손해에 대해 책임지지 않습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. 지식재산권</h4><p class="mb-4">서비스와 콘텐츠는 이미지 압축기 또는 라이선스 제공자의 소유이며 지식재산권 법률로 보호됩니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. 서비스 변경</h4><p class="mb-4">당사는 사전 통지 없이 서비스를 변경, 중단 또는 종료할 수 있습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. 종료</h4><p class="mb-4">약관 위반 등을 이유로 접근을 중단하거나 종료할 수 있습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. 준거법</h4><p class="mb-4">본 약관은 미국 캘리포니아주 법률의 적용을 받습니다.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. 문의</h4><p class="mb-4">약관 관련 문의: ${CONTACT_LINK}</p>`
+            },
+            'ar-SA': {
+                privacy: `<p class="mb-4">آخر تحديث: 7 نوفمبر 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. مقدمة</h4><p class="mb-4">توضح سياسة الخصوصية هذه كيف يحمي ضاغط الصور ("نحن") المعلومات عند استخدام موقعنا وخدماتنا. نحن ملتزمون بحماية خصوصيتك وأمان بياناتك.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. جمع البيانات ومعالجتها</h4><p class="mb-4">تتم معالجة جميع الصور محليًا على جهازك. وهذا يعني:</p><ul class="list-disc pl-6 mb-4"><li>لا يتم رفع الصور إلى خوادمنا</li><li>لا نجمع أو نخزن بيانات شخصية</li><li>تتم كل المعالجة داخل متصفحك</li><li>لا نتتبع استخدامك ولا نجمع بيانات تحليلية</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. خدمات الجهات الخارجية</h4><p class="mb-4">قد يحتوي الموقع على روابط لخدمات خارجية. لسنا مسؤولين عن ممارسات الخصوصية أو المحتوى لديها.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. ملفات تعريف الارتباط</h4><p class="mb-4">لا نستخدم ملفات تعريف الارتباط أو تقنيات مشابهة لجمع معلومات عن التصفح.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. خصوصية الأطفال</h4><p class="mb-4">الخدمة غير موجهة لمن هم دون 13 عامًا، ولا نجمع معلوماتهم عمدًا.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. التغييرات</h4><p class="mb-4">قد نحدث هذه السياسة بنشر نسخة جديدة على هذه الصفحة.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. اتصل بنا</h4><p class="mb-4">للاستفسارات: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">آخر تحديث: 7 نوفمبر 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. قبول الشروط</h4><p class="mb-4">باستخدام ضاغط الصور ("الخدمة") فإنك توافق على هذه الشروط. إذا لم توافق، يرجى عدم استخدام الخدمة.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. وصف الخدمة</h4><p class="mb-4">توفر الخدمة أداة مجانية لضغط الصور وتغيير حجمها وتحويل صيغها، وتقدم "كما هي" و"حسب التوفر".</p><h4 class="text-xl font-semibold mt-6 mb-3">3. مسؤوليات المستخدم</h4><p class="mb-4">يجب استخدام الخدمة لأغراض قانونية فقط، وتتحمل مسؤولية امتلاك الحقوق اللازمة للصور.</p><ul class="list-disc pl-6 mb-4"><li>لا تعالج صورًا تنتهك حقوق النشر أو العلامات أو الحقوق الأخرى</li><li>لا تعالج محتوى غير قانوني أو فاحش أو إباحي أو عنيف أو مسيء</li><li>لا تعالج صورًا تنتهك خصوصية الآخرين</li><li>لا تعالج ملفات تحتوي على برمجيات خبيثة أو محتوى ضار</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. تحديد المسؤولية</h4><p class="mb-4">لسنا مسؤولين عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو خاصة أو تبعية ناتجة عن استخدام الخدمة.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. الملكية الفكرية</h4><p class="mb-4">الخدمة ومحتواها مملوكان لضاغط الصور أو مرخصيهما ومحميان بقوانين الملكية الفكرية.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. تعديلات الخدمة</h4><p class="mb-4">قد نعدل أو نعلق أو نوقف الخدمة في أي وقت دون إشعار مسبق.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. الإنهاء</h4><p class="mb-4">قد نعلق أو ننهي وصولك، بما في ذلك عند مخالفة هذه الشروط.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. القانون الحاكم</h4><p class="mb-4">تخضع هذه الشروط لقوانين ولاية كاليفورنيا، الولايات المتحدة.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. اتصل بنا</h4><p class="mb-4">للاستفسارات حول الشروط: ${CONTACT_LINK}</p>`
+            }
+        });
+        Object.assign(LEGAL_TEXT, {
+            'hi-IN': {
+                privacy: `<p class="mb-4">अंतिम अपडेट: 7 नवंबर 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. परिचय</h4><p class="mb-4">यह गोपनीयता नीति बताती है कि इमेज कंप्रेसर (“हम”) हमारी वेबसाइट और सेवाओं का उपयोग करते समय जानकारी की सुरक्षा कैसे करता है। हम आपकी गोपनीयता और डेटा सुरक्षा के लिए प्रतिबद्ध हैं।</p><h4 class="text-xl font-semibold mt-6 mb-3">2. डेटा संग्रह और प्रोसेसिंग</h4><p class="mb-4">सभी छवियाँ आपके डिवाइस पर स्थानीय रूप से प्रोसेस होती हैं। इसका अर्थ है:</p><ul class="list-disc pl-6 mb-4"><li>छवियाँ हमारे सर्वर पर अपलोड नहीं होतीं</li><li>हम व्यक्तिगत डेटा एकत्र या संग्रहीत नहीं करते</li><li>सारी प्रोसेसिंग आपके ब्राउज़र में होती है</li><li>हम उपयोग ट्रैक नहीं करते और एनालिटिक्स डेटा नहीं लेते</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. तृतीय-पक्ष सेवाएँ</h4><p class="mb-4">साइट में तृतीय-पक्ष सेवाओं के लिंक हो सकते हैं। उनके गोपनीयता व्यवहार या सामग्री के लिए हम जिम्मेदार नहीं हैं।</p><h4 class="text-xl font-semibold mt-6 mb-3">4. कुकीज़</h4><p class="mb-4">हम ब्राउज़िंग गतिविधि की जानकारी एकत्र करने के लिए कुकीज़ या समान तकनीक का उपयोग नहीं करते।</p><h4 class="text-xl font-semibold mt-6 mb-3">5. बच्चों की गोपनीयता</h4><p class="mb-4">सेवा 13 वर्ष से कम आयु के बच्चों के लिए नहीं है और हम जानबूझकर उनका डेटा नहीं लेते।</p><h4 class="text-xl font-semibold mt-6 mb-3">6. बदलाव</h4><p class="mb-4">हम इस पेज पर नया संस्करण प्रकाशित करके नीति अपडेट कर सकते हैं।</p><h4 class="text-xl font-semibold mt-6 mb-3">7. संपर्क</h4><p class="mb-4">प्रश्नों के लिए संपर्क करें: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">अंतिम अपडेट: 7 नवंबर 2025</p><h4 class="text-xl font-semibold mt-6 mb-3">1. शर्तों की स्वीकृति</h4><p class="mb-4">इमेज कंप्रेसर (“सेवा”) का उपयोग करके आप इन शर्तों से सहमत होते हैं। असहमति होने पर सेवा का उपयोग न करें।</p><h4 class="text-xl font-semibold mt-6 mb-3">2. सेवा का विवरण</h4><p class="mb-4">सेवा छवियों को संपीड़ित, resize और convert करने का मुफ्त टूल प्रदान करती है, और “जैसी है” तथा “जैसी उपलब्ध है” आधार पर दी जाती है।</p><h4 class="text-xl font-semibold mt-6 mb-3">3. उपयोगकर्ता जिम्मेदारियाँ</h4><p class="mb-4">सेवा का उपयोग केवल वैध उद्देश्यों के लिए करें और प्रोसेस की गई छवियों के अधिकारों के लिए आप जिम्मेदार हैं।</p><ul class="list-disc pl-6 mb-4"><li>कॉपीराइट, ट्रेडमार्क या अन्य अधिकारों का उल्लंघन करने वाली छवियाँ प्रोसेस न करें</li><li>अवैध, अश्लील, पोर्नोग्राफ़िक, हिंसक या आपत्तिजनक सामग्री प्रोसेस न करें</li><li>दूसरों की गोपनीयता का उल्लंघन करने वाली छवियाँ प्रोसेस न करें</li><li>मैलवेयर या हानिकारक सामग्री वाली फ़ाइलें प्रोसेस न करें</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. देयता की सीमा</h4><p class="mb-4">सेवा के उपयोग से होने वाले प्रत्यक्ष, अप्रत्यक्ष, आकस्मिक, विशेष या परिणामी नुकसान के लिए हम जिम्मेदार नहीं होंगे।</p><h4 class="text-xl font-semibold mt-6 mb-3">5. बौद्धिक संपदा</h4><p class="mb-4">सेवा और उसकी सामग्री इमेज कंप्रेसर या लाइसेंसदाताओं की संपत्ति है और कानूनों से सुरक्षित है।</p><h4 class="text-xl font-semibold mt-6 mb-3">6. सेवा में बदलाव</h4><p class="mb-4">हम बिना पूर्व सूचना सेवा को बदल, निलंबित या बंद कर सकते हैं।</p><h4 class="text-xl font-semibold mt-6 mb-3">7. समाप्ति</h4><p class="mb-4">शर्तों के उल्लंघन सहित किसी भी कारण से पहुँच निलंबित या समाप्त की जा सकती है।</p><h4 class="text-xl font-semibold mt-6 mb-3">8. लागू कानून</h4><p class="mb-4">ये शर्तें संयुक्त राज्य अमेरिका के कैलिफ़ोर्निया राज्य के कानूनों द्वारा शासित हैं।</p><h4 class="text-xl font-semibold mt-6 mb-3">9. संपर्क</h4><p class="mb-4">इन शर्तों पर प्रश्न: ${CONTACT_LINK}</p>`
+            },
+            'ru-RU': {
+                privacy: `<p class="mb-4">Последнее обновление: 7 ноября 2025 г.</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Введение</h4><p class="mb-4">Эта Политика конфиденциальности объясняет, как Сжатие изображений ("мы") защищает информацию при использовании сайта и сервиса. Мы стремимся защищать вашу конфиденциальность и безопасность данных.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Сбор и обработка данных</h4><p class="mb-4">Все изображения обрабатываются локально на вашем устройстве. Это означает:</p><ul class="list-disc pl-6 mb-4"><li>Изображения не загружаются на наши серверы</li><li>Мы не собираем и не храним персональные данные</li><li>Вся обработка происходит в браузере</li><li>Мы не отслеживаем использование и не собираем аналитические данные</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">3. Сторонние сервисы</h4><p class="mb-4">Сайт может содержать ссылки на сторонние сервисы. Мы не отвечаем за их политику конфиденциальности или содержание.</p><h4 class="text-xl font-semibold mt-6 mb-3">4. Файлы cookie</h4><p class="mb-4">Мы не используем cookie или подобные технологии для сбора информации о вашей навигации.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Конфиденциальность детей</h4><p class="mb-4">Сервис не предназначен для детей младше 13 лет, и мы сознательно не собираем их данные.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Изменения</h4><p class="mb-4">Мы можем обновить эту политику, опубликовав новую версию на этой странице.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Контакты</h4><p class="mb-4">Вопросы можно направлять по адресу: ${CONTACT_LINK}</p>`,
+                terms: `<p class="mb-4">Последнее обновление: 7 ноября 2025 г.</p><h4 class="text-xl font-semibold mt-6 mb-3">1. Принятие условий</h4><p class="mb-4">Получая доступ к Сжатию изображений ("Сервис") или используя его, вы соглашаетесь с этими Условиями. Если вы не согласны, не используйте Сервис.</p><h4 class="text-xl font-semibold mt-6 mb-3">2. Описание сервиса</h4><p class="mb-4">Сервис предоставляет бесплатный инструмент для сжатия, изменения размера и конвертации изображений и предоставляется "как есть" и "по доступности".</p><h4 class="text-xl font-semibold mt-6 mb-3">3. Обязанности пользователя</h4><p class="mb-4">Используйте Сервис только в законных целях и убедитесь, что у вас есть права на обрабатываемые изображения.</p><ul class="list-disc pl-6 mb-4"><li>Не обрабатывайте изображения, нарушающие авторские права, товарные знаки или другие права</li><li>Не обрабатывайте незаконный, непристойный, порнографический, насильственный или оскорбительный контент</li><li>Не обрабатывайте изображения, нарушающие чужую конфиденциальность</li><li>Не обрабатывайте файлы с вредоносным или опасным содержимым</li></ul><h4 class="text-xl font-semibold mt-6 mb-3">4. Ограничение ответственности</h4><p class="mb-4">Мы не несем ответственности за прямые, косвенные, случайные, специальные или последующие убытки, связанные с использованием Сервиса.</p><h4 class="text-xl font-semibold mt-6 mb-3">5. Интеллектуальная собственность</h4><p class="mb-4">Сервис и его материалы принадлежат Сжатию изображений или лицензиарам и защищены законами об интеллектуальной собственности.</p><h4 class="text-xl font-semibold mt-6 mb-3">6. Изменения сервиса</h4><p class="mb-4">Мы можем изменять, приостанавливать или прекращать работу Сервиса без предварительного уведомления.</p><h4 class="text-xl font-semibold mt-6 mb-3">7. Прекращение</h4><p class="mb-4">Мы можем приостановить или прекратить доступ, включая случаи нарушения этих Условий.</p><h4 class="text-xl font-semibold mt-6 mb-3">8. Применимое право</h4><p class="mb-4">Эти Условия регулируются законами штата Калифорния, США.</p><h4 class="text-xl font-semibold mt-6 mb-3">9. Контакты</h4><p class="mb-4">Вопросы по Условиям: ${CONTACT_LINK}</p>`
+            }
+        });
+
+        let currentLanguage = 'en-US';
+        const reverseTextMap = {};
+        Object.keys(UI_TEXT).forEach((locale) => {
+            reverseTextMap[locale] = {};
+            Object.entries(UI_TEXT[locale]).forEach(([source, translated]) => {
+                reverseTextMap[locale][normalizeText(translated)] = source;
+            });
+        });
+
+        function normalizeText(value) {
+            return String(value || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function getSourceText(value) {
+            const normalized = normalizeText(value);
+            if (!normalized) return '';
+            if (UI_TEXT['en-US'] && UI_TEXT['en-US'][normalized]) return normalized;
+            for (const locale of Object.keys(reverseTextMap)) {
+                if (reverseTextMap[locale][normalized]) return reverseTextMap[locale][normalized];
+            }
+            for (const locale of Object.keys(UI_TEXT)) {
+                if (UI_TEXT[locale][normalized]) return normalized;
+            }
+            return normalized;
+        }
+
+        function t(source, vars = {}) {
+            const key = getSourceText(source);
+            const translated = (UI_TEXT[currentLanguage] && UI_TEXT[currentLanguage][key]) || key;
+            return translated.replace(/\{(\w+)\}/g, (_, name) => vars[name] !== undefined ? vars[name] : `{${name}}`);
+        }
+
+        function applyStaticTranslations(root = document.body) {
+            const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    const parent = node.parentElement;
+                    if (!parent || ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+                    if (!normalizeText(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+            const nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach((node) => {
+                const key = getSourceText(node.nodeValue);
+                if ((UI_TEXT[currentLanguage] && UI_TEXT[currentLanguage][key]) || currentLanguage === 'en-US') {
+                    node.nodeValue = currentLanguage === 'en-US' ? key : t(key);
+                }
+            });
+            document.querySelectorAll('[placeholder]').forEach((el) => {
+                const key = getSourceText(el.getAttribute('placeholder'));
+                if (key === 'Auto') el.setAttribute('placeholder', t('Auto'));
+            });
+            document.querySelectorAll('[aria-label]').forEach((el) => {
+                const key = getSourceText(el.getAttribute('aria-label'));
+                if (UI_TEXT[currentLanguage] && UI_TEXT[currentLanguage][key]) el.setAttribute('aria-label', t(key));
+            });
+        }
+
+        function renderLegalContent() {
+            const legal = LEGAL_TEXT[currentLanguage] || LEGAL_TEXT['en-US'];
+            const privacy = document.querySelector('#privacy .prose');
+            const terms = document.querySelector('#terms .prose');
+            if (privacy) privacy.innerHTML = legal.privacy;
+            if (terms) terms.innerHTML = legal.terms;
+        }
+
+        function setLanguage(locale) {
+            currentLanguage = LOCALES[locale] ? locale : 'en-US';
+            const config = LOCALES[currentLanguage];
+            document.documentElement.lang = config.htmlLang;
+            document.documentElement.dir = config.dir;
+            document.title = config.title;
+            const description = document.querySelector('meta[name="description"]');
+            const keywords = document.querySelector('meta[name="keywords"]');
+            if (description) description.setAttribute('content', config.description);
+            if (keywords) keywords.setAttribute('content', config.keywords);
+            document.querySelectorAll('[data-language-select]').forEach(select => select.value = currentLanguage);
+            renderLegalContent();
+            applyStaticTranslations();
+            localStorage.setItem('preferredLanguage', currentLanguage);
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        }
+
+        function detectPreferredLanguage() {
+            const saved = localStorage.getItem('preferredLanguage');
+            if (saved && LOCALES[saved]) return saved;
+            const browserLanguages = navigator.languages || [navigator.language || 'en-US'];
+            for (const lang of browserLanguages) {
+                if (LOCALES[lang]) return lang;
+                const base = String(lang).split('-')[0];
+                const match = Object.keys(LOCALES).find(locale => locale.split('-')[0] === base);
+                if (match) return match;
+            }
+            return 'en-US';
+        }
+
+        function getVisibleTextForSpeech() {
+            const selectors = 'main h2, main h3, main h4, main p, main li, footer p';
+            return Array.from(document.querySelectorAll(selectors))
+                .filter(el => el.offsetParent !== null)
+                .map(el => normalizeText(el.textContent))
+                .filter(Boolean)
+                .join('. ')
+                .slice(0, 12000);
+        }
+
+        function speakCurrentPage() {
+            if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
+                showToast(t('Speech is not supported in this browser.'), 'fa-exclamation-circle', 'bg-red-500');
+                return;
+            }
+            const text = getVisibleTextForSpeech();
+            if (!text) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = LOCALES[currentLanguage].voice;
+            const voices = window.speechSynthesis.getVoices();
+            const voice = voices.find(v => v.lang === utterance.lang) || voices.find(v => v.lang && v.lang.startsWith(utterance.lang.split('-')[0]));
+            if (voice) utterance.voice = voice;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        document.querySelectorAll('[data-language-select]').forEach(select => {
+            select.addEventListener('change', (event) => setLanguage(event.target.value));
+        });
+        document.querySelectorAll('[data-voice-button]').forEach(button => button.addEventListener('click', speakCurrentPage));
+        document.querySelectorAll('[data-voice-stop]').forEach(button => button.addEventListener('click', () => {
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        }));
+        if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
         
         // Mobile menu toggle
         mobileMenuButton.addEventListener('click', () => {
@@ -592,6 +1118,10 @@
         // Clear all button
         clearAllButton.addEventListener('click', resetApp);
         
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+        }
+        
         function resetApp() {
             uploadedImages = [];
             compressedImages = [];
@@ -604,7 +1134,7 @@
             emptyState.className = 'col-span-full text-center py-12 text-gray-500';
             emptyState.innerHTML = `
                 <i class="fa fa-images text-4xl mb-3"></i>
-                <p>No images uploaded yet</p>
+                <p>${t('No images uploaded yet')}</p>
             `;
             previewGrid.appendChild(emptyState);
         }
@@ -618,14 +1148,14 @@
                 return;
             }
             
-            showToast('Downloading images...', 'fa-download', 'bg-primary');
+            showToast(t('Downloading images...'), 'fa-download', 'bg-primary');
             
             compressedImages.forEach((image, index) => {
                 setTimeout(() => {
                     downloadImage(image);
                     if (index === compressedImages.length - 1) {
                         setTimeout(() => {
-                            showToast('All images downloaded successfully!', 'fa-check', 'bg-secondary');
+                            showToast(t('All images downloaded successfully!'), 'fa-check', 'bg-secondary');
                         }, 500);
                     }
                 }, index * 300);
@@ -669,12 +1199,12 @@
         // Compress button logic
         compressButton.addEventListener('click', async () => {
             if (uploadedImages.length === 0) {
-                showToast('No images to compress!', 'fa-exclamation-triangle', 'bg-yellow-500');
+                showToast(t('No images to compress!'), 'fa-exclamation-triangle', 'bg-yellow-500');
                 return;
             }
             
             compressButton.disabled = true;
-            compressButton.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> Compressing...';
+            compressButton.innerHTML = `<i class="fa fa-spinner fa-spin mr-2"></i> ${t('Compressing...')}`;
             
             try {
                 compressedImages = [];
@@ -696,16 +1226,16 @@
                 originalTotalSize.textContent = formatFileSize(totalOrig);
                 compressedTotalSize.textContent = formatFileSize(totalComp);
                 const savings = 100 - Math.round((totalComp / totalOrig) * 100);
-                savingsPercentage.textContent = `(${savings}% smaller)`;
+                savingsPercentage.textContent = `(${t('{value}% smaller', { value: savings })})`;
                 
                 resultsSection.classList.remove('hidden');
-                showToast('Compression completed successfully!', 'fa-check', 'bg-secondary');
+                showToast(t('Compression completed successfully!'), 'fa-check', 'bg-secondary');
             } catch (error) {
                 console.error('Compression error:', error);
-                showToast('Error during compression. Please try again.', 'fa-exclamation-circle', 'bg-red-500');
+                showToast(t('Error during compression. Please try again.'), 'fa-exclamation-circle', 'bg-red-500');
             } finally {
                 compressButton.disabled = false;
-                compressButton.innerHTML = 'Start Compression';
+                compressButton.innerHTML = t('Start Compression');
             }
         });
         
@@ -716,7 +1246,7 @@
                 .slice(0, 20);
             
             if (validFiles.length === 0) {
-                showToast('No valid image files selected', 'fa-exclamation-circle', 'bg-red-500');
+                showToast(t('No valid image files selected'), 'fa-exclamation-circle', 'bg-red-500');
                 return;
             }
             
@@ -725,16 +1255,17 @@
             uploadedImages = validFiles;
             
             validFiles.forEach((file) => {
+                const safeFileName = escapeHTML(file.name);
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     const previewItem = document.createElement('div');
                     previewItem.className = 'bg-neutral rounded-lg overflow-hidden border border-gray-200';
                     previewItem.innerHTML = `
                         <div class="relative pb-[75%] bg-gray-100">
-                            <img src="${e.target.result}" alt="Preview" class="absolute inset-0 w-full h-full object-cover">
+                            <img src="${e.target.result}" alt="${t('Image Preview')}" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="p-3">
-                            <p class="text-sm font-medium truncate" title="${file.name}">${file.name}</p>
+                            <p class="text-sm font-medium truncate" title="${safeFileName}">${safeFileName}</p>
                             <p class="text-xs text-gray-500">${formatFileSize(file.size)}</p>
                         </div>
                     `;
@@ -743,7 +1274,7 @@
                 reader.readAsDataURL(file);
             });
             
-            showToast(`Uploaded ${validFiles.length} image(s)`, 'fa-check', 'bg-secondary');
+            showToast(t('Uploaded {count} image(s)', { count: validFiles.length }), 'fa-check', 'bg-secondary');
         }
         
         // Compress image (Core Logic)
@@ -909,19 +1440,20 @@
         function addResultItem(originalImage, compressedImage) {
             const resultItem = document.createElement('div');
             resultItem.className = 'flex justify-between items-center p-3 border-b border-gray-100 last:border-0';
+            const safeCompressedName = escapeHTML(compressedImage.name);
             resultItem.innerHTML = `
                 <div>
-                    <p class="font-medium text-sm truncate max-w-[200px]" title="${compressedImage.name}">${compressedImage.name}</p>
+                    <p class="font-medium text-sm truncate max-w-[200px]" title="${safeCompressedName}">${safeCompressedName}</p>
                     <p class="text-xs text-gray-500">
                         ${formatFileSize(originalImage.size)} → <b>${formatFileSize(compressedImage.size)}</b>
                         <span class="${compressedImage.savings >= 0 ? 'text-secondary' : 'text-red-500'}">
-                            (${compressedImage.savings}% smaller)
+                            (${t('{value}% smaller', { value: compressedImage.savings })})
                         </span>
                     </p>
                 </div>
                 <button class="text-primary hover:text-primary/80 transition-colors" 
                         onclick="downloadImage(${JSON.stringify(compressedImage).replace(/"/g, '\'')})">
-                    <i class="fa fa-download mr-1"></i> Download
+                    <i class="fa fa-download mr-1"></i> ${t('Download')}
                 </button>
             `;
             resultsList.appendChild(resultItem);
